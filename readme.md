@@ -6,6 +6,7 @@ The Foxgirl Tail Calculator is a web application that allows users to calculate 
 predefined dimensions of a silver fox tail, scaled to match the proportions of a foxgirl.
 
 Background used: [Pixiv.net link](https://www.pixiv.net/en/artworks/60082303)
+Favicon and Open Graph metadata image from: [Foxification](https://www.scribblehub.com/series/972934/foxification/)
 
 ## Features
 
