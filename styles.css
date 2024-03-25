@@ -1,0 +1,146 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #121212;
+	color: #fff;
+	background-image: url('images/foxgirl.png');
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: center; /* Vertically center the container */
+	justify-content: center;
+	height: 100vh;
+}
+
+#container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+/* CSS styles for the input container */
+#input-container,
+#result-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	max-width: 90%;
+	margin: auto;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	margin-top: 20px;
+}
+
+input[type='number'] {
+	padding: 10px;
+	margin-bottom: 20px;
+	width: 100%;
+	max-width: 300px;
+	border-radius: 5px;
+	border: none;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+#calculateButton {
+	padding: 10px 20px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #333;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#calculateButton:hover {
+	background-color: #555;
+}
+
+#result-container {
+	display: none;
+}
+
+#result-container h2 {
+	margin-bottom: 20px;
+}
+
+#tailLength,
+#tailMass,
+#tailVolume {
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+#back-arrow-container {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #333;
+	padding: 10px 20px;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+	border-color: #555;
+	border-style: solid;
+}
+
+#back-arrow-container:hover {
+	background-color: #555;
+	cursor: pointer;
+}
+
+#back-arrow {
+	font-size: 24px;
+	margin-right: 10px;
+	color: #fff;
+}
+
+#go-back-text {
+	font-size: 16px;
+	color: #fff;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-top-left-radius: 10px;
+	font-size: 0.7rem;
+}
+
+footer p {
+	margin: 0;
+	color: #fff;
+}
+
+footer a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1; /* Ensure the anchor is clickable */
+}
+
+footer a:hover {
+	text-decoration: underline;
+}
+
+footer a::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: transparent;
+	z-index: -1; /* Push behind anchor */
+}

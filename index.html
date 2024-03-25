@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<meta
+			property="og:title"
+			content="Foxgirl Tail Calculator"
+		/>
+		<meta
+			property="og:description"
+			content="Calculate the length, mass, and volume of a foxgirl's tail based on her height."
+		/>
+		<meta
+			property="og:image"
+			content="https://decaded.dev/foxgirl/images/foxxy.jpg"
+		/>
+		<meta
+			property="og:url"
+			content="https://decaded.dev/foxgirl"
+		/>
+		<meta
+			property="og:type"
+			content="website"
+		/>
+		<meta
+			property="og:site_name"
+			content="Foxgirl Tail Calculator"
+		/>
+
+		<title>Foxgirl Tail Calculator</title>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="images/foxxy.jpg"
+		/>
+
+		<link
+			rel="stylesheet"
+			href="styles.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+		/>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="input-container">
+				<h1>Foxgirl Tail Calculator</h1>
+				<input
+					type="number"
+					id="foxgirlHeightInput"
+					placeholder="Enter foxgirl height (cm)"
+				/>
+				<button id="calculateButton">Calculate</button>
+			</div>
+			<div id="result-container">
+				<h2>Calculated Results</h2>
+				<p id="tailLength"></p>
+				<p id="tailMass"></p>
+				<p id="tailVolume"></p>
+				<div
+					id="back-arrow-container"
+					onclick="goBack()"
+				>
+					<i
+						class="fas fa-arrow-left"
+						id="back-arrow"
+					></i>
+					<!-- Font Awesome arrow icon with onclick function -->
+					<span id="go-back-text">Go Back</span>
+					<!-- Text with onclick function -->
+				</div>
+			</div>
+		</div>
+
+		<script src="calculateFoxgirlTail.js"></script>
+		<script>
+			function calculateAndDisplayResults() {
+				const foxgirlHeight = parseFloat(document.getElementById('foxgirlHeightInput').value);
+				if (!isNaN(foxgirlHeight)) {
+					if (foxgirlHeight <= 0) {
+						alert('Please enter a valid positive number for foxgirl height.');
+						return; // Exit the function if the entered value is invalid
+					}
+					if (foxgirlHeight < 50) {
+						alert('Are you sure the foxgirl is this small? This seems unusually tiny.\nAverage for a newborn is around 50cm.');
+						return;
+					}
+					const { tailLength, tailMass, tailVolumeLiters, tailVolumeCm3 } = calculateFoxgirlTail(foxgirlHeight);
+					document.getElementById('tailLength').textContent = `Tail Length: ${tailLength} cm`;
+					document.getElementById('tailMass').textContent = `Tail Mass: ${tailMass} kg`;
+					document.getElementById('tailVolume').textContent = `Tail Volume: ${tailVolumeLiters} liters (${tailVolumeCm3} cm³)`;
+					document.getElementById('input-container').style.display = 'none';
+					document.getElementById('result-container').style.display = 'flex';
+				}
+			}
+
+			document.getElementById('calculateButton').addEventListener('click', calculateAndDisplayResults);
+
+			document.getElementById('foxgirlHeightInput').addEventListener('keydown', function (event) {
+				if (event.key === 'Enter') {
+					calculateAndDisplayResults();
+				}
+			});
+
+			function goBack() {
+				document.getElementById('input-container').style.display = 'flex';
+				document.getElementById('result-container').style.display = 'none';
+			}
+		</script>
+	</body>
+
+	<footer>
+		<a
+			href="https://decaded.dev"
+			target="_blank"
+		>
+		</a>
+		<p>Site created by Decaded</p>
+	</footer>
+</html>
