@@ -40,7 +40,7 @@
 
 		<link
 			rel="stylesheet"
-			href="styles.css"
+			href="styles/main.css"
 		/>
 		<link
 			rel="stylesheet"
@@ -52,68 +52,66 @@
 		<div id="container">
 			<div id="input-container">
 				<h1>Foxgirl Tail Calculator</h1>
-				<input
-					type="number"
-					id="foxgirlHeightInput"
-					placeholder="Enter foxgirl height (cm)"
-				/>
+				<div class="input-wrapper">
+					
+					<input
+						type="number"
+						id="foxgirlHeightInput"
+						placeholder="Enter foxgirl height (cm)"
+					/>
+				</div>
+				<div class="input-wrapper">
+					<label for="tailCountSelect">Select number of tails</label>
+					<select id="tailCountSelect">
+						<option value="1">1 Tail</option>
+						<option value="2">2 Tails</option>
+						<option value="3">3 Tails</option>
+						<option value="4">4 Tails</option>
+						<option value="5">5 Tails</option>
+						<option value="6">6 Tails</option>
+						<option value="7">7 Tails</option>
+						<option value="8">8 Tails</option>
+						<option value="9">9 Tails</option>
+					</select>
+				</div>
 				<button id="calculateButton">Calculate</button>
 			</div>
-			<div id="result-container">
-				<h2>Calculated Results</h2>
-				<p id="tailLength"></p>
-				<p id="tailMass"></p>
-				<p id="tailVolume"></p>
-				<div
-					id="back-arrow-container"
-					onclick="goBack()"
-				>
-					<i
-						class="fas fa-arrow-left"
-						id="back-arrow"
-					></i>
-					<!-- Font Awesome arrow icon with onclick function -->
-					<span id="go-back-text">Go Back</span>
-					<!-- Text with onclick function -->
-				</div>
-			</div>
+      <div id="result-container">
+        <h2>Calculated Results</h2>
+        <div id="individualContainer">
+            <div class="result-item">
+                <span class="result-label">Tail Length:</span>
+                <span id="tailLength" class="result-value"></span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Tail Mass: </span>
+                <span id="tailMass" class="result-value"></span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Tail Volume: </span>
+                <span id="tailVolume" class="result-value"></span>
+            </div>
+        </div>
+        <div id="combinedContainer">
+            <div class="result-item">
+                <span class="result-label">Combined Mass: </span>
+                <span id="combinedMass" class="result-value"></span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Combined Volume: </span>
+                <span id="combinedVolume" class="result-value"></span>
+            </div>
+        </div>
+        <div id="back-arrow-container" onclick="goBack()">
+            <i class="fas fa-arrow-left" id="back-arrow"></i>
+            <span id="go-back-text">Go Back</span>
+        </div>
+    </div>
+    
 		</div>
 
-		<script src="calculateFoxgirlTail.js"></script>
-		<script>
-			function calculateAndDisplayResults() {
-				const foxgirlHeight = parseFloat(document.getElementById('foxgirlHeightInput').value);
-				if (!isNaN(foxgirlHeight)) {
-					if (foxgirlHeight <= 0) {
-						alert('Please enter a valid positive number for foxgirl height.');
-						return; // Exit the function if the entered value is invalid
-					}
-					if (foxgirlHeight < 50) {
-						alert('Are you sure the foxgirl is this small? This seems unusually tiny.\nAverage for a newborn is around 50cm.');
-						return;
-					}
-					const { tailLength, tailMass, tailVolumeLiters, tailVolumeCm3 } = calculateFoxgirlTail(foxgirlHeight);
-					document.getElementById('tailLength').textContent = `Tail Length: ${tailLength} cm`;
-					document.getElementById('tailMass').textContent = `Tail Mass: ${tailMass} kg`;
-					document.getElementById('tailVolume').textContent = `Tail Volume: ${tailVolumeLiters} liters (${tailVolumeCm3} cm³)`;
-					document.getElementById('input-container').style.display = 'none';
-					document.getElementById('result-container').style.display = 'flex';
-				}
-			}
-
-			document.getElementById('calculateButton').addEventListener('click', calculateAndDisplayResults);
-
-			document.getElementById('foxgirlHeightInput').addEventListener('keydown', function (event) {
-				if (event.key === 'Enter') {
-					calculateAndDisplayResults();
-				}
-			});
-
-			function goBack() {
-				document.getElementById('input-container').style.display = 'flex';
-				document.getElementById('result-container').style.display = 'none';
-			}
-		</script>
+		<script src="js/calculateFoxgirlTail.js"></script>
+		<script src="js/script.js"></script>
 	</body>
 
 	<footer>
