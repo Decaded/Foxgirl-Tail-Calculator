@@ -16,11 +16,11 @@
 		/>
 		<meta
 			property="og:image"
-			content="https://decaded.dev/foxgirl/images/foxxy.jpg"
+			content="https://decaded.dev/dev/foxgirl/images/foxxy.jpg"
 		/>
 		<meta
 			property="og:url"
-			content="https://decaded.dev/foxgirl"
+			content="https://decaded.dev/dev/foxgirl"
 		/>
 		<meta
 			property="og:type"
@@ -53,7 +53,6 @@
 			<div id="input-container">
 				<h1>Foxgirl Tail Calculator</h1>
 				<div class="input-wrapper">
-					
 					<input
 						type="number"
 						id="foxgirlHeightInput"
@@ -76,38 +75,58 @@
 				</div>
 				<button id="calculateButton">Calculate</button>
 			</div>
-      <div id="result-container">
-        <h2>Calculated Results</h2>
-        <div id="individualContainer">
-            <div class="result-item">
-                <span class="result-label">Tail Length:</span>
-                <span id="tailLength" class="result-value"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Tail Mass: </span>
-                <span id="tailMass" class="result-value"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Tail Volume: </span>
-                <span id="tailVolume" class="result-value"></span>
-            </div>
-        </div>
-        <div id="combinedContainer">
-            <div class="result-item">
-                <span class="result-label">Combined Mass: </span>
-                <span id="combinedMass" class="result-value"></span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Combined Volume: </span>
-                <span id="combinedVolume" class="result-value"></span>
-            </div>
-        </div>
-        <div id="back-arrow-container" onclick="goBack()">
-            <i class="fas fa-arrow-left" id="back-arrow"></i>
-            <span id="go-back-text">Go Back</span>
-        </div>
-    </div>
-    
+			<div id="result-container">
+				<h2>Calculated Results</h2>
+				<div id="individualContainer">
+					<div class="result-item">
+						<span class="result-label">Tail Length:</span>
+						<span
+							id="tailLength"
+							class="result-value"
+						></span>
+					</div>
+					<div class="result-item">
+						<span class="result-label">Tail Mass: </span>
+						<span
+							id="tailMass"
+							class="result-value"
+						></span>
+					</div>
+					<div class="result-item">
+						<span class="result-label">Tail Volume: </span>
+						<span
+							id="tailVolume"
+							class="result-value"
+						></span>
+					</div>
+				</div>
+				<div id="combinedContainer">
+					<div class="result-item">
+						<span class="result-label">Combined Mass: </span>
+						<span
+							id="combinedMass"
+							class="result-value"
+						></span>
+					</div>
+					<div class="result-item">
+						<span class="result-label">Combined Volume: </span>
+						<span
+							id="combinedVolume"
+							class="result-value"
+						></span>
+					</div>
+				</div>
+				<div
+					id="back-arrow-container"
+					onclick="goBack()"
+				>
+					<i
+						class="fas fa-arrow-left"
+						id="back-arrow"
+					></i>
+					<span id="go-back-text">Go Back</span>
+				</div>
+			</div>
 		</div>
 
 		<script src="js/calculateFoxgirlTail.js"></script>
