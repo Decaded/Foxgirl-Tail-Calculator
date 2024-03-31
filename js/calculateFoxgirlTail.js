@@ -23,12 +23,12 @@ function calculateFoxgirlTail(foxgirlHeight) {
 
 	/**
 	 * Calculate the mass of the foxgirl's tail.
-	 * @param {number} length The length of the foxgirl's tail in centimeters.
+	 * @param {number} volume The volume of the foxgirl's tail fur in cubic centimeters.
 	 * @returns {number} The calculated mass of the foxgirl's tail in kilograms.
 	 */
 	function calculateTailMass(volume) {
-		// Assumption: Density of the tail fur is 0.05 g/cm³
-		const density = 0.8; // g/cm³
+		// Assumption: Density of the tail fur is 1.976 g/cm³
+		const density = 1.976; // g/cm³
 		return (volume * density) / 1000; // Convert mass from grams to kilograms
 	}
 
