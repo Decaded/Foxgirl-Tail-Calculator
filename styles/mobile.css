@@ -1,0 +1,37 @@
+/* Adjustments for Mobile Screens */
+@media screen and (max-width: 760px) {
+	/* General Styles */
+	body {
+		justify-content: flex-start; /* Adjust alignment */
+		padding-top: 20px; /* Add space at the top */
+	}
+
+	#container {
+		padding: 0 10px; /* Add padding to the sides */
+		min-width: 440px;
+	}
+
+	#input-container,
+	#result-container {
+		padding: 20px;
+	}
+
+	/* Category Spacers */
+	h3,
+	h2 {
+		margin-top: 10px; /* Reduce top margin */
+	}
+
+	/* Individual and Combined Containers */
+	#individualContainer,
+	#combinedContainer {
+		max-width: 100%; /* Adjust max-width for smaller screens */
+		margin-bottom: 10px; /* Reduce bottom margin */
+	}
+
+	/* Back Arrow Container */
+	#back-arrow-container {
+		margin-top: 10px; /* Reduce top margin */
+		margin-bottom: 20px; /* Increase bottom margin */
+	}
+}
