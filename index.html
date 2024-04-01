@@ -51,7 +51,7 @@
 	<body>
 		<div id="container">
 			<div id="input-container">
-				<h1>Foxgirl Tail Calculator</h1>
+				<h2>Foxgirl Measurement Calculator</h2>
 				<div class="input-wrapper">
 					<input
 						type="number"
@@ -86,30 +86,39 @@
 						></span>
 					</div>
 					<div class="result-item">
-						<span class="result-label">Tail Mass: </span>
+						<span class="result-label">Tail Mass:</span>
 						<span
 							id="tailMass"
 							class="result-value"
 						></span>
 					</div>
 					<div class="result-item">
-						<span class="result-label">Tail Volume: </span>
+						<span class="result-label">Tail Volume:</span>
 						<span
 							id="tailVolume"
 							class="result-value"
 						></span>
 					</div>
+					<div class="result-item">
+						<span class="result-label">Ear Height:</span>
+						<span
+							id="earHeight"
+							class="result-value"
+						></span>
+					</div>
 				</div>
 				<div id="combinedContainer">
+					<hr />
+					<span class="result-label">Combined Tails:</span>
 					<div class="result-item">
-						<span class="result-label">Combined Mass: </span>
+						<span class="result-label">Mass:</span>
 						<span
 							id="combinedMass"
 							class="result-value"
 						></span>
 					</div>
 					<div class="result-item">
-						<span class="result-label">Combined Volume: </span>
+						<span class="result-label">Volume:</span>
 						<span
 							id="combinedVolume"
 							class="result-value"
@@ -129,7 +138,9 @@
 			</div>
 		</div>
 
+		<!-- Load JavaScript files -->
 		<script src="js/calculateFoxgirlTail.js"></script>
+		<script src="js/calculateFoxgirlEars.js"></script>
 		<script src="js/script.js"></script>
 	</body>
 

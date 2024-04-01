@@ -1,4 +1,4 @@
-function calculateAndDisplayResults() {
+function calculateAndDisplayMeasurements() {
 	const foxgirlHeight = parseFloat(document.getElementById('foxgirlHeightInput').value);
 	const tailCount = parseInt(document.getElementById('tailCountSelect').value);
 
@@ -13,9 +13,15 @@ function calculateAndDisplayResults() {
 		}
 
 		const { tailLength, tailMass, tailVolumeLiters, tailVolumeCm3 } = calculateFoxgirlTail(foxgirlHeight);
+		const earHeight = calculateEarHeight(foxgirlHeight);
+
+		// Display tail measurements
 		document.getElementById('tailLength').textContent = ` ${tailLength} cm`;
 		document.getElementById('tailMass').textContent = ` ${tailMass} kg`;
 		document.getElementById('tailVolume').textContent = ` ${tailVolumeLiters} liters (${tailVolumeCm3} cm³)`;
+
+		// Display ear height
+		document.getElementById('earHeight').textContent = ` ${earHeight} cm`;
 
 		if (tailCount === 1) {
 			// Calculate and display data for a single tail
@@ -49,11 +55,11 @@ function calculateAndDisplayResults() {
 	}
 }
 
-document.getElementById('calculateButton').addEventListener('click', calculateAndDisplayResults);
+document.getElementById('calculateButton').addEventListener('click', calculateAndDisplayMeasurements);
 
 document.getElementById('foxgirlHeightInput').addEventListener('keydown', function (event) {
 	if (event.key === 'Enter') {
-		calculateAndDisplayResults();
+		calculateAndDisplayMeasurements();
 	}
 });
 
