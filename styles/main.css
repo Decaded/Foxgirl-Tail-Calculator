@@ -53,7 +53,8 @@ body {
 	margin-bottom: 5px;
 }
 
-input[type='number'] {
+input[type='number'],
+select {
 	padding: 10px;
 	width: 100%;
 	max-width: 300px;
@@ -65,18 +66,7 @@ input[type='number'] {
 	color: #fff;
 }
 
-select {
-	padding: 10px;
-	width: 50%;
-	max-width: 300px;
-	border-radius: 5px;
-	border: none;
-	box-sizing: border-box;
-	background-color: #333;
-	color: #fff;
-	align-items: center;
-}
-
+/* Calculate Button */
 #calculateButton {
 	padding: 10px 20px;
 	margin-top: 20px;
@@ -94,10 +84,6 @@ select {
 
 #result-container {
 	display: none;
-}
-
-h2 {
-	margin-bottom: 20px;
 }
 
 /* Category Spacers */
@@ -134,6 +120,7 @@ h2 {
 	font-size: 16px;
 }
 
+/* Back Arrow Container */
 #back-arrow-container {
 	margin-top: 20px;
 	display: flex;
@@ -206,7 +193,6 @@ footer a::after {
 	background-color: transparent;
 	z-index: -1;
 }
-
 
 /* Result Items */
 .result-item {
