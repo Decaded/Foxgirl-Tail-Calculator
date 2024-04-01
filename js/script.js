@@ -12,13 +12,34 @@ function calculateAndDisplayMeasurements() {
 			return;
 		}
 
+		// Update foxgirl height in the results container
+		document.getElementById('foxgirlHeight').textContent = ` ${foxgirlHeight} cm`;
+
+		// Update selected number of tails in the results container
+		document.getElementById('tailCount').textContent = ` ${tailCount}`;
+
 		const { tailLength, tailMass, tailVolumeLiters, tailVolumeCm3 } = calculateFoxgirlTail(foxgirlHeight);
 		const earHeight = calculateEarHeight(foxgirlHeight);
 
 		// Display tail measurements
 		document.getElementById('tailLength').textContent = ` ${tailLength} cm`;
 		document.getElementById('tailMass').textContent = ` ${tailMass} kg`;
-		document.getElementById('tailVolume').textContent = ` ${tailVolumeLiters} liters (${tailVolumeCm3} cm³)`;
+		// Select the #tailVolume element
+		const tailVolumeElement = document.getElementById('tailVolume');
+
+		// Create a new span element for the liters value
+		const litersElement = document.createElement('span');
+		litersElement.textContent = `${tailVolumeLiters} liters`;
+
+		// Create a new span element for the cm³ value
+		const cm3Element = document.createElement('span');
+		cm3Element.textContent = `${tailVolumeCm3} cm³`;
+
+		// Append the elements to the #tailVolume element
+		tailVolumeElement.innerHTML = '';
+		tailVolumeElement.appendChild(litersElement);
+		tailVolumeElement.appendChild(document.createElement('br'));
+		tailVolumeElement.appendChild(cm3Element);
 
 		// Display ear height
 		document.getElementById('earHeight').textContent = ` ${earHeight} cm`;
@@ -42,7 +63,22 @@ function calculateAndDisplayMeasurements() {
 
 			// Update the HTML elements with the combined mass and volume
 			document.getElementById('combinedMass').textContent = ` ${combinedMass.toFixed(2)} kg`;
-			document.getElementById('combinedVolume').textContent = ` ${combinedVolumeLiters.toFixed(2)} liters (${combinedVolumeCm3.toFixed(2)} cm³)`;
+			// Select the #combinedVolume element
+			const combinedVolumeElement = document.getElementById('combinedVolume');
+
+			// Create a new span element for the liters value
+			const litersElement = document.createElement('span');
+			litersElement.textContent = `${combinedVolumeLiters.toFixed(2)} liters`;
+
+			// Create a new span element for the cm³ value
+			const cm3Element = document.createElement('span');
+			cm3Element.textContent = `${combinedVolumeCm3.toFixed(2)} cm³`;
+
+			// Append the elements to the #combinedVolume element
+			combinedVolumeElement.innerHTML = '';
+			combinedVolumeElement.appendChild(litersElement);
+			combinedVolumeElement.appendChild(document.createElement('br'));
+			combinedVolumeElement.appendChild(cm3Element);
 
 			// Hide the individual container and display the combined container
 			document.getElementById('individualContainer').style.display = 'flex';

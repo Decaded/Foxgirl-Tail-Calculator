@@ -1,3 +1,4 @@
+/* General Styles */
 body {
 	margin: 0;
 	padding: 0;
@@ -18,6 +19,8 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
+	max-width: 80vh;
 }
 
 #input-container,
@@ -26,18 +29,19 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	max-width: 90%;
 	margin: auto;
 	padding: 20px;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(0, 0, 0, 0.9);
 	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.2);
 	margin-top: 20px;
 	color: #fff;
+	width: 100%;
 }
 
 #input-container h1 {
 	margin-top: 0px;
+	text-align: center;
 }
 
 .input-wrapper {
@@ -92,15 +96,36 @@ select {
 	display: none;
 }
 
-#result-container h2 {
+h2 {
 	margin-bottom: 20px;
 }
 
+/* Category Spacers */
+h3,
+h2 {
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	text-align: center; /* Center the text */
+	background-color: #333; /* Add background color */
+	color: #fff; /* Set text color to white */
+	padding: 10px; /* Add padding for spacing */
+	border-radius: 5px; /* Add rounded corners */
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Individual and Combined Containers */
 #individualContainer,
 #combinedContainer {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
+	width: 100%;
+	max-width: 60vh;
+	margin-bottom: 20px; /* Add spacing between containers */
 }
 
 #individualContainer p,
@@ -138,6 +163,7 @@ select {
 	color: #fff;
 }
 
+/* Footer */
 footer {
 	position: fixed;
 	bottom: 0;
@@ -145,25 +171,29 @@ footer {
 	padding: 10px;
 	background-color: rgba(0, 0, 0, 0.8);
 	border-top-left-radius: 10px;
-	font-size: 0.7rem;
-}
-
-footer p {
-	margin: 0;
+	font-size: 0.8rem;
 	color: #fff;
+	display: flex; /* Make the footer items flex */
+	flex-direction: column; /* Display items in a column */
+	align-items: flex-end; /* Align items to the right */
 }
 
+/* Footer Link */
 footer a {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 1; /* Ensure the anchor is clickable */
+	margin-bottom: 5px; /* Add some spacing between links */
+	color: #fff; /* Set link color */
+	text-decoration: none; /* Remove underline */
+	transition: color 0.3s; /* Add smooth color transition */
+	display: flex; /* Make the link a flex container */
+	align-items: center; /* Center items vertically */
+}
+
+footer a i {
+	margin-right: 5px; /* Add space between icon and text */
 }
 
 footer a:hover {
-	text-decoration: underline;
+	color: #ff6600; /* Change color on hover */
 }
 
 footer a::after {
@@ -174,23 +204,34 @@ footer a::after {
 	right: 0;
 	bottom: 0;
 	background-color: transparent;
-	z-index: -1; /* Push behind anchor */
+	z-index: -1;
 }
 
+
+/* Result Items */
 .result-item {
-	margin-bottom: 10px;
-}
-
-.result-label {
-	font-weight: bold;
-}
-
-.result-value {
-	font-weight: normal;
+	display: flex;
+	align-items: center;
+	justify-content: space-between; /* Align items evenly */
+	padding: 10px; /* Add padding for spacing */
+	border-bottom: 1px solid #666; /* Add bottom border for separation */
+	width: 100%;
 }
 
 .result-label,
 .result-value {
+	padding: 5px; /* Add padding for better spacing */
 	text-indent: 5px;
 	text-wrap: wrap;
+}
+
+.result-label {
+	font-weight: bold;
+	flex: 1; /* Distribute remaining space evenly */
+	margin-right: 10px; /* Add margin for spacing */
+}
+
+.result-value {
+	flex: 2; /* Take up more space */
+	text-align: right; /* Align values to the right */
 }

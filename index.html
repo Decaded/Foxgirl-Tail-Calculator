@@ -53,6 +53,7 @@
 			<div id="input-container">
 				<h2>Foxgirl Measurement Calculator</h2>
 				<div class="input-wrapper">
+					<label for="foxgirlHeightInput">Provide height in centimeters</label>
 					<input
 						type="number"
 						id="foxgirlHeightInput"
@@ -77,39 +78,55 @@
 			</div>
 			<div id="result-container">
 				<h2>Calculated Results</h2>
+
 				<div id="individualContainer">
 					<div class="result-item">
-						<span class="result-label">Tail Length:</span>
+						<span class="result-label">Foxgirl Height:</span>
+						<span
+							id="foxgirlHeight"
+							class="result-value"
+						></span>
+					</div>
+					<div class="result-item">
+						<span class="result-label">Number of Tails:</span>
+						<span
+							id="tailCount"
+							class="result-value"
+						></span>
+					</div>
+
+					<div class="result-item">
+						<span class="result-label">Ears Height:</span>
+						<span
+							id="earHeight"
+							class="result-value"
+						></span>
+					</div>
+					<h3>Tail dimensions</h3>
+					<div class="result-item">
+						<span class="result-label">Length:</span>
 						<span
 							id="tailLength"
 							class="result-value"
 						></span>
 					</div>
 					<div class="result-item">
-						<span class="result-label">Tail Mass:</span>
+						<span class="result-label">Mass:</span>
 						<span
 							id="tailMass"
 							class="result-value"
 						></span>
 					</div>
 					<div class="result-item">
-						<span class="result-label">Tail Volume:</span>
+						<span class="result-label">Volume:</span>
 						<span
 							id="tailVolume"
 							class="result-value"
 						></span>
 					</div>
-					<div class="result-item">
-						<span class="result-label">Ear Height:</span>
-						<span
-							id="earHeight"
-							class="result-value"
-						></span>
-					</div>
 				</div>
 				<div id="combinedContainer">
-					<hr />
-					<span class="result-label">Combined Tails:</span>
+					<h3>Combined Tails</h3>
 					<div class="result-item">
 						<span class="result-label">Mass:</span>
 						<span
@@ -146,10 +163,19 @@
 
 	<footer>
 		<a
+			href="https://github.com/Decaded/Foxgirl-Tail-Calculator"
+			target="_blank"
+			><i class="fab fa-github"></i> GitHub Repo</a
+		>
+		<a
 			href="https://decaded.dev"
 			target="_blank"
+			><i class="fas fa-globe"></i> Site &copy; Decaded</a
 		>
-		</a>
-		<p>Site created by Decaded</p>
+		<a
+			href="https://www.pixiv.net/en/artworks/60082303"
+			target="_blank"
+			><i class="fas fa-image"></i> Background Image</a
+		>
 	</footer>
 </html>
