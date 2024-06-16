@@ -21,7 +21,7 @@ Calculate tail length, mass, and volume Adjust calculations based on foxgirl's h
 
 ## Installation
 
-No installation is required. Simply open the index.html file in a web browser (or visit [foxgirl tail calculator website](https://decaded.dev/dev/foxgirl)) to use the application.
+No installation is required. Simply open the index.html file in a web browser (or visit [foxgirl tail calculator website](https://foxgirl.decaded.dev)) to use the application.
 
 ## Contributing
 
