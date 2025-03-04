@@ -85,6 +85,11 @@ function calculateAndDisplayMeasurements() {
 			document.getElementById('combinedContainer').style.display = 'flex';
 		}
 
+		// Calculate body weight and total weight
+		const bodyWeight = calculateBodyWeight(foxgirlHeight);
+		document.getElementById('bodyWeight').textContent = ` ${bodyWeight} kg`;
+		document.getElementById('totalWeight').textContent = ` ${(parseFloat(bodyWeight) + parseFloat(tailMass)).toFixed(1)} kg`;
+
 		// Hide the input container and display the result container
 		document.getElementById('input-container').style.display = 'none';
 		document.getElementById('result-container').style.display = 'flex';

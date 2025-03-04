@@ -31,9 +31,9 @@ No installation is required. Simply open the `index.html` file in a web browser 
 ## To-Do List
 
 - [x] Estimated ears height
-- [ ] Estimated body weight
-  - [ ] Body alone
-  - [ ] Body with tail(s)
+- [x] Estimated body weight
+  - [x] Body alone
+  - [x] Body with tail(s)
 - [ ] Tail shape customization options
   - [ ] Fluffy (heaviest)
   - [ ] Bushy (medium)
