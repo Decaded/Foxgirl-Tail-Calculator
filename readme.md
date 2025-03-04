@@ -12,7 +12,7 @@ Favicon and Open Graph metadata image from: [Foxification](https://www.scribbleh
 ## Features
 
 - Calculate foxgirl tail length, mass, and volume based on her height.
-- ❗**NEW!** Ears length is now calculated and displayed alongside tail(s).
+- ❗**NEW!** Estimated body weight is now calculated and displayed alongside tail(s) and ears.
 
 <div align="center">
 	<img src="/images/github/Foxgirl_Calculator_Preview.png" alt="Foxgirl Calculator Preview">
