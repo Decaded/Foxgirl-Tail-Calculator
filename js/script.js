@@ -86,9 +86,13 @@ function calculateAndDisplayMeasurements() {
 		}
 
 		// Calculate body weight and total weight
-		const bodyWeight = calculateBodyWeight(foxgirlHeight);
+		const bodyWeight = calculateBodyWeight(foxgirlHeight, tailCount);
 		document.getElementById('bodyWeight').textContent = ` ${bodyWeight} kg`;
-		document.getElementById('totalWeight').textContent = ` ${(parseFloat(bodyWeight) + parseFloat(tailMass)).toFixed(1)} kg`;
+
+		// Get combined mass properly
+		const combinedMass = tailCount === 1 ? parseFloat(tailMass) : parseFloat(document.getElementById('combinedMass').textContent.replace(/[^\d.]/g, ''));
+
+		document.getElementById('totalWeight').textContent = ` ${(parseFloat(bodyWeight) + combinedMass).toFixed(1)} kg`;
 
 		// Hide the input container and display the result container
 		document.getElementById('input-container').style.display = 'none';
