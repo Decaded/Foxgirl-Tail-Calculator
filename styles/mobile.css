@@ -2,36 +2,136 @@
 @media screen and (max-width: 760px) {
 	/* General Styles */
 	body {
-		justify-content: flex-start; /* Adjust alignment */
-		padding-top: 20px; /* Add space at the top */
+		justify-content: flex-start;
+		padding: 20px 10px;
+		height: auto;
+		min-height: 100vh;
+		background-attachment: fixed;
+		flex-direction: column;
 	}
 
 	#container {
-		padding: 0 10px; /* Add padding to the sides */
-		min-width: 440px;
+		padding: 0;
+		width: 100%;
+		max-width: 100%;
+		flex: 1;
 	}
 
 	#input-container,
 	#result-container {
-		padding: 20px;
+		padding: 15px;
+		width: 90%;
+		margin: 10px auto;
 	}
 
-	/* Category Spacers */
-	h3,
-	h2 {
-		margin-top: 10px; /* Reduce top margin */
+	/* Footer adjustments */
+	footer {
+		position: relative;
+		width: 100%;
+		background-color: rgba(0, 0, 0, 0.8);
+		padding: 10px 5px;
+		margin-top: auto;
+		border-radius: 10px 10px 0 0;
+		flex-direction: row;
+		justify-content: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		z-index: 1;
 	}
 
-	/* Individual and Combined Containers */
-	#individualContainer,
-	#combinedContainer {
-		max-width: 100%; /* Adjust max-width for smaller screens */
-		margin-bottom: 10px; /* Reduce bottom margin */
+	footer a {
+		font-size: 12px;
+		padding: 4px 8px;
+		white-space: nowrap;
+	}
+
+	/* Rest of your existing mobile styles remain the same */
+	/* Input elements */
+	input[type='number'],
+	select {
+		max-width: 100%;
+		font-size: 16px;
+		padding: 12px;
+	}
+
+	/* Result Items */
+	.result-item {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 8px 0;
+	}
+
+	.result-label,
+	.result-value {
+		width: 100%;
+		text-align: left;
+		padding: 2px 0;
+		font-size: 14px;
+	}
+
+	.result-value {
+		text-align: right;
 	}
 
 	/* Back Arrow Container */
 	#back-arrow-container {
-		margin-top: 10px; /* Reduce top margin */
-		margin-bottom: 20px; /* Increase bottom margin */
+		width: 90%;
+		margin: 15px auto;
+		padding: 8px 12px;
+		border-width: 2px;
+	}
+
+	#back-arrow {
+		font-size: 18px;
+		margin-right: 8px;
+	}
+
+	#go-back-text {
+		font-size: 14px;
+	}
+
+	/* Heading sizes */
+	h2 {
+		font-size: 1.2rem;
+	}
+
+	h3 {
+		font-size: 1rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#input-container,
+	#result-container {
+		width: 100%;
+		padding: 10px;
+	}
+
+	footer {
+		gap: 8px;
+		padding: 8px 0;
+	}
+
+	footer a {
+		font-size: 11px;
+		padding: 3px 6px;
+	}
+
+	.result-label,
+	.result-value {
+		font-size: 13px;
+	}
+
+	#back-arrow-container {
+		width: 85%;
+		padding: 6px 10px;
+	}
+
+	#back-arrow {
+		font-size: 16px;
+	}
+
+	#go-back-text {
+		font-size: 13px;
 	}
 }
