@@ -158,10 +158,10 @@ function calculateKitsuneProperties() {
 	const tailCount = parseInt(document.getElementById('tailCount').value) || 9;
 	const tailShape = document.getElementById('tailShape').value;
 
-	if (height < 50) {
-		alert('Height must be at least 50cm');
-		return;
-	}
+	// if (height < 50) {
+	// 	alert('Height must be at least 50cm');
+	// 	return;
+	// }
 
 	const bodyWeight = calculateBodyWeight(height, tailCount, age);
 	const earHeight = calculateEarHeight(height, tailCount);
