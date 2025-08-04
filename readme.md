@@ -36,7 +36,7 @@ None needed. Open [https://foxgirl.decaded.dev](https://foxgirl.decaded.dev) in 
 
 ## To-Do List
 
-- [] More chaos
+- [ ] More chaos
 
 ## Contributing
 
