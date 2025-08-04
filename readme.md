@@ -36,15 +36,7 @@ None needed. Open [https://foxgirl.decaded.dev](https://foxgirl.decaded.dev) in 
 
 ## To-Do List
 
-- [x] Tail shape options
-- [x] Archetype presets
-- [x] Lore & calculation modal
-- [x] Spirit power math
-- [x] Foxfire hue logic
-- [x] Fluff complexity slider
-- [x] Animated aura
-- [x] Mobile-friendly chaos
-- [x] Footer with credits & links
+- [] More chaos
 
 ## Contributing
 
