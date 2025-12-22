@@ -6,15 +6,47 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Foxgirl Tail Calculator</title>
+		<title>Kitsune Calculator</title>
+		<script src="https://cdn.tailwindcss.com"></script>
 
+		<link
+			rel="stylesheet"
+			href="styles/style.css"
+		/>
+
+		<!-- favicon -->
+		<link
+			rel="icon"
+			type="image/png"
+			href="images/fox_small.png"
+		/>
+
+		<!-- Meta Description -->
+		<meta
+			name="description"
+			content="Calculate the tail size and weight of your foxgirl based on height and age."
+		/>
+
+		<!-- Meta Keywords -->
+		<meta
+			name="keywords"
+			content="kitsune calculator, foxgirl tail size, foxgirl tail weight, kitsune tail calculator, foxgirl measurements, kitsune measurements, foxgirl tail size calculator, kitsune tail size calculator"
+		/>
+
+		<!-- Author -->
+		<meta
+			name="author"
+			content="Decaded"
+		/>
+
+		<!-- Open Graph Meta Tags -->
 		<meta
 			property="og:title"
-			content="Foxgirl Tail Calculator"
+			content="Kitsune Calculator"
 		/>
 		<meta
 			property="og:description"
-			content="A magical calculator to determine the weight, size, and floofiness of a foxgirl's tail."
+			content="Calculate the tail size and weight of your foxgirl based on height and age."
 		/>
 		<meta
 			property="og:image"
@@ -25,420 +57,362 @@
 			content="https://foxgirl.decaded.dev"
 		/>
 		<meta
+			property="og:type"
+			content="website"
+		/>
+
+		<!-- Twitter Card Meta Tags -->
+		<meta
 			name="twitter:card"
 			content="summary_large_image"
 		/>
 		<meta
 			name="twitter:title"
-			content="Foxgirl Tail Calculator"
+			content="Kitsune Calculator"
 		/>
 		<meta
 			name="twitter:description"
-			content="A magical calculator to determine the weight, size, and floofiness of a foxgirl's tail."
+			content="Calculate the tail size and weight of your foxgirl based on height and age."
 		/>
 		<meta
 			name="twitter:image"
 			content="https://foxgirl.decaded.dev/images/fox_small.png"
 		/>
-
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="/styles/style.css"
-		/>
 	</head>
-	<link
-		rel="icon"
-		href="/images/fox_small.png"
-		type="image/png"
-	/>
-	<body>
-		<!-- Animated background particles -->
-		<div
-			class="spirit-particle"
-			style="top: 10%; left: 5%; width: 10px; height: 10px; background: var(--tertiary); animation-delay: 0s"
-		></div>
-		<div
-			class="spirit-particle"
-			style="top: 30%; left: 90%; width: 15px; height: 15px; background: var(--secondary); animation-delay: 3s"
-		></div>
-		<div
-			class="spirit-particle"
-			style="top: 70%; left: 15%; width: 8px; height: 8px; background: var(--primary); animation-delay: 6s"
-		></div>
-		<div
-			class="spirit-particle"
-			style="top: 20%; left: 40%; width: 12px; height: 12px; background: var(--secondary); animation-delay: 9s"
-		></div>
-
-		<header>
-			<div class="logo">
-				<i class="fas fa-paw"></i>
-				<h1>Foxgirl Tail Calculator</h1>
-				<i class="fas fa-moon"></i>
-			</div>
-
-			<p class="subtitle">A magical calculator to determine the weight, size, and floofiness of a foxgirl's tail.</p>
-		</header>
-
-		<div class="container">
-			<div class="panel">
-				<h2 class="panel-title"><i class="fas fa-info-circle"></i> Foxgirl Information</h2>
-
-				<div class="input-group">
-					<label for="height"><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
-					<input
-						type="number"
-						id="height"
-						min="50"
-						max="250"
-						value="165"
-						placeholder="Enter height in cm"
-					/>
-				</div>
-
-				<div class="input-group">
-					<label for="age"><i class="fas fa-birthday-cake"></i> Age (years)</label>
-					<input
-						type="number"
-						id="age"
-						min="1"
-						max="10000"
-						value="30"
-						placeholder="Enter age in years"
-					/>
-				</div>
-
-				<div class="input-group">
-					<label for="tailCount"><i class="fas fa-feather-alt"></i> Tail Count</label>
-					<select id="tailCount">
-						<option
-							value="1"
-							selected
-						>
-							1 Tail
-						</option>
-						<option value="2">2 Tails</option>
-						<option value="3">3 Tails</option>
-						<option value="4">4 Tails</option>
-						<option value="5">5 Tails</option>
-						<option value="6">6 Tails</option>
-						<option value="7">7 Tails</option>
-						<option value="8">8 Tails</option>
-						<option value="9">9 Tails</option>
-					</select>
-				</div>
-
-				<div class="input-group">
-					<label for="tailShape"><i class="fas fa-cloud"></i> Tail Shape</label>
-					<select id="tailShape">
-						<option value="fluffy">Fluffy (heaviest)</option>
-						<option
-							value="bushy"
-							selected
-						>
-							Bushy (medium)
-						</option>
-						<option value="sleek">Sleek (lightest)</option>
-					</select>
-				</div>
-
-				<div class="input-group">
-					<label><i class="fas fa-star"></i> Archetype Presets</label>
-					<div class="presets">
-						<button
-							class="preset-btn"
-							data-preset="kit"
-						>
-							Kit (1 tail)
-						</button>
-						<button
-							class="preset-btn"
-							data-preset="teen"
-						>
-							Maiden (2 tails)
-						</button>
-						<button
-							class="preset-btn"
-							data-preset="young3"
-						>
-							Matron (3 tails)
-						</button>
-						<button
-							class="preset-btn"
-							data-preset="young4"
-						>
-							Ascendant (4 tails)
-						</button>
-						<button
-							class="preset-btn"
-							data-preset="adult5"
-						>
-							Mythic (5 tails)
-						</button>
-						<button
-							class="preset-btn"
-							data-preset="adult6"
-						>
-							Elder (6 tails)
-						</button>
-						<button
-							class="preset-btn"
-							data-preset="elder7"
-						>
-							Ancient (7 tails)
-						</button>
-						<button
-							class="preset-btn"
-							data-preset="elder8"
-						>
-							Demigod (8 tails)
-						</button>
-						<button
-							class="preset-btn"
-							data-preset="celestial"
-						>
-							Celestial (9 tails)
-						</button>
-					</div>
-				</div>
-
-				<div class="fox-image-container">
-					<img
-						src="/images/fox.png"
-						alt="Mystical Fox"
-						class="fox-image"
-					/>
-				</div>
-
-				<div class="spirit-level">
-					<span class="level-label">Tail Complexity:</span>
-					<div class="level-bar">
-						<div
-							class="level-progress"
-							id="tailComplexity"
-						></div>
-					</div>
-					<span
-						class="level-value"
-						id="complexityValue"
-						>High</span
-					>
-				</div>
-
-				<div class="actions">
-					<button
-						class="btn btn-secondary"
-						id="helpBtn"
-					>
-						<i class="fas fa-question-circle"></i> Help
-					</button>
-				</div>
-			</div>
-
-			<div class="results-panel">
-				<div class="results-header">
-					<h2 class="results-title"><i class="fas fa-chart-bar"></i> Analysis Results</h2>
-					<div
-						class="kitsune-badge"
-						id="kitsuneBadge"
-					>
-						9-Tail Foxgirl
-					</div>
-				</div>
-
-				<div class="results-grid">
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-weight"></i> Physical Properties</div>
-						<div
-							class="result-value"
-							id="physicalValue"
-						>
-							42.7 kg
-						</div>
-						<div class="result-description">Total body weight including tail support mass</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-arrows-alt-v"></i> Ear Height</div>
-						<div
-							class="result-value"
-							id="earValue"
-						>
-							12.3 cm
-						</div>
-						<div class="result-description">Height of the foxgirl's ears</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-ruler-horizontal"></i> Tail Length</div>
-						<div
-							class="result-value"
-							id="tailLength"
-						>
-							123.8 cm
-						</div>
-						<div class="result-description">Length of each individual tail</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-weight-hanging"></i> Tail Mass</div>
-						<div
-							class="result-value"
-							id="tailMass"
-						>
-							4.2 kg
-						</div>
-						<div class="result-description">Mass of each individual tail</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-flask"></i> Tail Volume</div>
-						<div
-							class="result-value"
-							id="tailVolume"
-						>
-							16.8 liters
-						</div>
-						<div class="result-description">Volume of each individual tail</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-weight"></i> Total Weight</div>
-						<div
-							class="result-value"
-							id="totalWeight"
-						>
-							78.3 kg
-						</div>
-						<div class="result-description">Combined weight including all tails</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-bolt"></i> Spirit Power</div>
-						<div
-							class="result-value"
-							id="spiritPower"
-						>
-							0%
-						</div>
-						<div class="result-description">Spiritual energy output potential</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-fire"></i> Foxfire Color</div>
-						<div
-							class="result-value"
-							id="foxfireColor"
-						>
-							soft blue
-						</div>
-						<div class="result-description">Color of the mystical foxfire</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-hourglass-half"></i> Age</div>
-						<div
-							class="result-value"
-							id="ageValue"
-						>
-							30 years
-						</div>
-						<div class="result-description">Chronological age</div>
-					</div>
-
-					<div class="result-card">
-						<div class="result-category"><i class="fas fa-arrows-alt-h"></i> Tail Span</div>
-						<div
-							class="result-value"
-							id="tailSpan"
-						>
-							0 cm
-						</div>
-						<div class="result-description">Maximum visual span of all tails</div>
-					</div>
-				</div>
-
-				<div class="aura-container">
-					<div class="aura-title"><i class="fas fa-wind"></i> Tail Fluffiness</div>
-					<div class="aura-visual">
-						<div
-							class="aura-intensity"
-							id="auraIntensity"
-						></div>
-						<div
-							class="aura-particles"
-							id="auraParticles"
-						></div>
-					</div>
-					<div class="aura-labels">
-						<span>Sleek</span>
-						<span>Bushy</span>
-						<span>Fluffy</span>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div
-			id="helpModal"
-			class="modal"
-		>
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				<h2><i class="fas fa-question-circle"></i> Kitsune Tail Calculator Guide</h2>
-				<p>Unravel the arcane math behind foxgirls: discover how height, age, and those all-important tails shape their mystical stats.</p>
-
-				<h3>How to Use</h3>
-				<p>Fill in these details to begin your journey:</p>
-				<ul>
-					<li><strong>Height (cm):</strong> The foxgirl’s standing height, measured in centimeters.</li>
-					<li><strong>Age (years):</strong> Her chronological age.</li>
-					<li><strong>Tail Count:</strong> Number of tails she currently possesses (1–9).</li>
-					<li><strong>Tail Shape:</strong> Choose how sleek or fluffy her tails appear.</li>
-				</ul>
-
-				<h3>How It Works</h3>
-				<p>Behind the scenes, calculations blend biology, spirit lore, and a pinch of fantasy:</p>
-				<ul>
-					<li><strong>Body Weight:</strong> Based on BMI, adjusted for tails and age.</li>
-					<li><strong>Ear Height:</strong> Scales with height, with bonuses from extra tails.</li>
-					<li><strong>Tail Properties:</strong> Length, volume, and mass estimated by shape and count.</li>
-					<li><strong>Spirit Power:</strong> Grows logarithmically with more tails and age.</li>
-					<li><strong>Foxfire Color:</strong> Shifts depending on mystical energy and tail number.</li>
-				</ul>
-				<p><em>Reminder: All values (while based on real-life foxes) are fictional, calculated for amusement (and maybe a touch of mischief).</em></p>
-			</div>
-		</div>
-
-		<footer>
-			<p>Foxgirl Tail Calculator v2.0</p>
-			<div class="footer-links">
-				<a
-					href="https://github.com/Decaded/Foxgirl-Tail-Calculator"
-					target="_blank"
-					><i class="fab fa-github"></i> Source Code</a
+	<body class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-red-950 p-6">
+		<div class="max-w-7xl mx-auto">
+			<!-- Header -->
+			<div class="text-center mb-8">
+				<h1
+					class="text-5xl font-bold text-red-400 mb-2"
+					style="font-family: serif"
 				>
-				<span class="projects-group">
-					<span class="projects-label">My Other Projects:</span>
-					<a
-						href="https://celestial.decaded.dev"
-						target="_blank"
-						><i class="fas fa-star"></i> Celestial Gambler</a
-					>
-					|
-					<a
-						href="https://warrior.decaded.dev"
-						target="_blank"
-						><i class="fas fa-pen-nib"></i> Word Warrior</a
-					>
-				</span>
+					Kitsune Calculator
+				</h1>
+				<p class="text-red-200 italic">Measure your foxgirl's bush</p>
 			</div>
-		</footer>
 
-		<script src="/js/main.js?v=1.0"></script>
+			<!-- Main Content - Two Column Layout -->
+			<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+				<!-- Left Column - Inputs -->
+				<div class="bg-slate-800/90 backdrop-blur rounded-lg shadow-xl p-8 border-2 border-red-900">
+					<!-- Height Input -->
+					<div class="mb-6">
+						<label class="block text-red-300 font-semibold mb-2"> Kitsune Height </label>
+						<div class="flex gap-2">
+							<input
+								type="number"
+								id="height"
+								value="165"
+								class="flex-1 px-4 py-2 border-2 border-red-900 rounded-lg focus:border-red-500 focus:outline-none bg-slate-700 text-white"
+								min="100"
+								max="250"
+								oninput="calculate()"
+							/>
+							<select
+								id="unit"
+								class="px-4 py-2 border-2 border-red-900 rounded-lg focus:border-red-500 focus:outline-none bg-slate-700 text-white"
+								onchange="calculate()"
+							>
+								<option value="metric">cm</option>
+								<option value="imperial">inches</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Age Input -->
+					<div class="mb-6">
+						<label class="block text-red-300 font-semibold mb-2"> Age (years) </label>
+						<input
+							type="number"
+							id="age"
+							value="800"
+							class="w-full px-4 py-2 border-2 border-red-900 rounded-lg focus:border-red-500 focus:outline-none bg-slate-700 text-white"
+							min="1"
+							max="9000"
+							step="1"
+							oninput="calculate()"
+						/>
+					</div>
+
+					<!-- Tail Count -->
+					<div class="mb-6">
+						<label class="block text-red-300 font-semibold mb-2"> Number of Tails (<span id="tailCountLabel">1</span>) </label>
+						<input
+							type="range"
+							id="tailCount"
+							min="1"
+							max="9"
+							value="1"
+							class="w-full h-2 bg-red-900 rounded-lg appearance-none cursor-pointer accent-red-500"
+							oninput="updateTailCount(); calculate()"
+						/>
+						<div class="flex justify-between text-xs text-red-400 mt-1">
+							<span>Nogitsune (1)</span>
+							<span>Kyūbi (9)</span>
+						</div>
+					</div>
+
+					<!-- Tail Type -->
+					<div class="mb-6">
+						<label class="block text-red-300 font-semibold mb-2"> Tail Type </label>
+						<div class="grid grid-cols-3 gap-2">
+							<button
+								onclick="setTailType('sleek')"
+								id="btn-sleek"
+								class="py-2 px-4 rounded-lg font-medium transition-colors bg-slate-700 text-red-300 hover:bg-slate-600"
+								title="Fennec Fox"
+							>
+								Sleek
+							</button>
+							<button
+								onclick="setTailType('bushy')"
+								id="btn-bushy"
+								class="py-2 px-4 rounded-lg font-medium transition-colors bg-red-600 text-white"
+								title="Red Fox"
+							>
+								Bushy
+							</button>
+							<button
+								onclick="setTailType('fluffy')"
+								id="btn-fluffy"
+								class="py-2 px-4 rounded-lg font-medium transition-colors bg-slate-700 text-red-300 hover:bg-slate-600"
+								title="Arctic Fox"
+							>
+								Fluffy
+							</button>
+						</div>
+						<div
+							class="text-xs text-red-400 mt-1 text-center"
+							id="speciesLabel"
+						>
+							Based on Red Fox
+						</div>
+					</div>
+
+					<!-- Legend vs Realism -->
+					<div class="mb-6">
+						<label class="block text-red-300 font-semibold mb-2"> Legend Factor (<span id="legendLabel">0.5</span>) </label>
+						<input
+							type="range"
+							id="legend"
+							min="0"
+							max="1"
+							step="0.01"
+							value="0.5"
+							class="w-full h-2 bg-red-900 rounded-lg appearance-none cursor-pointer accent-red-500"
+							oninput="updateLegend(); calculate()"
+						/>
+						<div class="flex justify-between text-xs text-red-400 mt-1">
+							<span>Realism</span>
+							<span>Legend</span>
+						</div>
+					</div>
+
+					<div class="mt-3 px-4 py-2 rounded-lg border border-red-700 bg-red-950/60 text-center">
+						<div class="text-xs uppercase tracking-widest text-red-400">Interpretation Mode</div>
+						<div
+							id="loreLabel"
+							class="text-lg font-bold text-red-300"
+						>
+							Shrine Canon
+						</div>
+					</div>
+
+					<button
+						id="copyLink"
+						class="w-full mt-4 py-2 px-4 rounded-lg border border-red-800 bg-slate-700 text-red-300 hover:bg-slate-600 transition-colors text-sm font-medium"
+						onclick="copyShareLink()"
+					>
+						Copy Share Link
+					</button>
+
+					<!-- Fox Image -->
+					<div class="mt-8 flex justify-center">
+						<div class="relative">
+							<img
+								src="images/fox.png"
+								alt="Kitsune"
+								id="foxImage"
+								class="w-64 h-64 object-contain transition-all duration-500 glow-bushy"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- Right Column - Results -->
+				<div class="bg-slate-800/90 backdrop-blur rounded-lg shadow-xl p-8 border-2 border-red-900">
+					<div class="space-y-6">
+						<!-- Body Properties -->
+						<div>
+							<h3 class="text-xl font-bold text-red-300 mb-3">Body Properties</h3>
+							<div class="grid grid-cols-2 gap-4">
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Body Weight</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="bodyWeight"
+									>
+										--
+									</div>
+								</div>
+
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Total Weight</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="totalWeight"
+									>
+										--
+									</div>
+									<div class="text-xs text-red-500">(with tails)</div>
+								</div>
+
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Build Factor</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="buildFactor"
+									>
+										--
+									</div>
+									<div
+										class="text-xs text-red-500"
+										id="buildStatus"
+									>
+										--
+									</div>
+								</div>
+
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Tail Weight</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="tailWeight"
+									>
+										--
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Tail Results -->
+						<div>
+							<h3 class="text-xl font-bold text-red-300 mb-3">Tail Measurements</h3>
+							<div class="grid grid-cols-2 gap-4">
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Length (each)</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="tailLength"
+									>
+										--
+									</div>
+								</div>
+
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Base Diameter</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="tailDiameter"
+									>
+										--
+									</div>
+								</div>
+
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Total Volume</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="totalVolume"
+									>
+										--
+									</div>
+								</div>
+
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Volume (each)</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="volumeEach"
+									>
+										--
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Ear Results -->
+						<div>
+							<h3 class="text-xl font-bold text-red-300 mb-3">Ear Measurements</h3>
+							<div class="grid grid-cols-2 gap-4">
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Ear Height</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="earHeight"
+									>
+										--
+									</div>
+								</div>
+
+								<div class="bg-slate-700/50 p-4 rounded-lg border border-red-900">
+									<div class="text-sm text-red-400 mb-1">Base Width</div>
+									<div
+										class="text-2xl font-bold text-red-300"
+										id="earWidth"
+									>
+										--
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Golden Ratio Note -->
+						<div class="bg-red-950/50 p-4 rounded-lg border border-red-900">
+							<p class="text-sm text-red-300">All proportions are calculated using φ ≈ 1.618, with age-adjusted build factors for realistic variation.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div class="text-center mt-6 text-red-400 text-sm italic">According to ancient legends, a kitsune gains one tail every 100 years</div>
+
+			<footer class="mt-10 pt-6 border-t border-red-900 text-center text-sm text-red-400">
+				<p class="mb-3 italic">Foxgirl Tail Calculator <span class="font-semibold">v3.0</span></p>
+
+				<div class="flex flex-col gap-2 items-center">
+					<a
+						href="https://github.com/Decaded/Foxgirl-Tail-Calculator"
+						target="_blank"
+						class="hover:text-red-300 transition-colors"
+					>
+						Source Code (GitHub)
+					</a>
+
+					<div class="flex flex-wrap gap-2 items-center justify-center text-red-500">
+						<span class="opacity-80">Other Projects:</span>
+						<a
+							href="https://celestial.decaded.dev"
+							target="_blank"
+							class="hover:text-red-300 transition-colors"
+						>
+							Celestial Gambler
+						</a>
+						<span class="opacity-50">•</span>
+						<a
+							href="https://warrior.decaded.dev"
+							target="_blank"
+							class="hover:text-red-300 transition-colors"
+						>
+							Word Warrior
+						</a>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<script src="js/main.js"></script>
 	</body>
 </html>

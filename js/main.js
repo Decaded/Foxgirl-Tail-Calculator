@@ -1,295 +1,224 @@
-// Initialize spirit particles
-function createParticles() {
-	const container = document.body;
-	const particleCount = 15;
+const PHI = 1.618033988749;
+let currentTailType = 'bushy';
 
-	for (let i = 0; i < particleCount; i++) {
-		const particle = document.createElement('div');
-		particle.classList.add('spirit-particle');
+const tailSpecs = {
+	sleek: {
+		lengthRatio: 0.32,
+		diameterRatio: 0.042,
+		furMassFactor: 0.9,
+		species: 'Fennec Fox',
+		glowClass: 'glow-sleek',
+	},
+	bushy: {
+		lengthRatio: 0.38,
+		diameterRatio: 0.048,
+		furMassFactor: 1.0,
+		species: 'Red Fox',
+		glowClass: 'glow-bushy',
+	},
+	fluffy: {
+		lengthRatio: 0.35,
+		diameterRatio: 0.062,
+		furMassFactor: 1.15,
+		species: 'Arctic Fox',
+		glowClass: 'glow-fluffy',
+	},
+};
 
-		// Random size between 2px and 10px
-		const size = Math.random() * 8 + 2;
-		particle.style.width = `${size}px`;
-		particle.style.height = `${size}px`;
+/* ---------- UI HELPERS ---------- */
 
-		// Random position
-		particle.style.left = `${Math.random() * 100}%`;
-		particle.style.top = `${Math.random() * 100}%`;
-
-		// Random color
-		const colors = ['var(--primary)', 'var(--secondary)', 'var(--tertiary)'];
-		particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-		// Random opacity
-		particle.style.opacity = Math.random() * 0.6 + 0.2;
-
-		// Random animation delay
-		particle.style.animationDelay = `${Math.random() * 15}s`;
-
-		container.appendChild(particle);
-	}
+function updateTailCount() {
+	const count = document.getElementById('tailCount').value;
+	document.getElementById('tailCountLabel').textContent = count;
 }
 
-// Base BMI calculation adapted for spiritual beings
-function calculateBodyWeight(height, tailCount, age) {
-	const baseWeight = Math.pow(height / 100, 2) * 19.5;
-	const metabolicAdjustment = 1 + Math.log2(tailCount) * 0.02;
-	const supportMass = baseWeight * (0.04 * (tailCount - 1));
-	const ageFactor = 1 + age / 1000; // Age adds 0.1% per year
-	return (baseWeight * metabolicAdjustment * ageFactor + supportMass).toFixed(1);
+function updateLegend() {
+	const v = document.getElementById('legend').value;
+	document.getElementById('legendLabel').textContent = v;
+	updateLoreLabel(parseFloat(v));
 }
 
-function calculateEarHeight(height, tailCount) {
-	let baseEar = height < 50 ? 10 : 20 + (height - 150) / 5;
-	const tailBonus = tailCount > 5 ? (tailCount - 5) * 1.5 : 0;
-	return Math.max(10, baseEar + tailBonus).toFixed(1);
+function updateLoreLabel(legend) {
+	let label = 'Field Biologist';
+
+	if (legend >= 0.85) label = 'Rule-of-Cool';
+	else if (legend >= 0.65) label = 'Anime Interpretation';
+	else if (legend >= 0.45) label = 'Shrine Canon';
+	else if (legend >= 0.2) label = 'Folklore Accurate';
+
+	const el = document.getElementById('loreLabel');
+	if (el) el.textContent = label;
+
+	const container = document.getElementById('loreLabel')?.parentElement;
+	if (!container) return;
+
+	container.className =
+		'mt-3 px-4 py-2 rounded-lg border text-center ' +
+		(legend >= 0.85
+			? 'border-yellow-500 bg-yellow-950/40'
+			: legend >= 0.65
+			? 'border-pink-500 bg-pink-950/40'
+			: legend >= 0.45
+			? 'border-red-700 bg-red-950/60'
+			: 'border-slate-600 bg-slate-900/60');
 }
 
-function calculateFoxgirlTail(height, tailCount, tailShape, age) {
-	// Tail length now properly incorporates tail shape and age
-	const baseLength = height / 2 + height / 4;
-	const shapeFactor = tailShape === 'fluffy' ? 1.15 : tailShape === 'sleek' ? 0.85 : 1;
-	const ageFactor = 1 + age / 500;
-	const tailLength = (baseLength * shapeFactor * ageFactor).toFixed(2);
+function setTailType(type) {
+	if (!tailSpecs[type]) return;
+	currentTailType = type;
 
-	const spiritLightness = 1 - Math.min(0.5, tailCount * 0.04);
-	const densityFactor = tailShape === 'fluffy' ? 1.2 : tailShape === 'sleek' ? 0.8 : 1;
-	const baseDensity = 0.25;
-	const density = baseDensity * spiritLightness * densityFactor;
-
-	const sections = 10;
-	const taperingFactor = 3.37;
-	const sectionLength = tailLength / sections;
-	let totalVolume = 0;
-
-	for (let i = 0; i < sections; i++) {
-		const sectionLengthAdjusted = (sectionLength * (sections - i)) / sections;
-		const radius = sectionLengthAdjusted * 0.5 * taperingFactor;
-		const sectionVolume = Math.PI * Math.pow(radius, 2) * sectionLengthAdjusted;
-		totalVolume += sectionVolume;
-	}
-
-	const tailVolumeLiters = totalVolume / 1000;
-	const tailMass = (tailVolumeLiters * density).toFixed(2);
-
-	return {
-		tailLength,
-		tailMass,
-		tailVolumeLiters: tailVolumeLiters.toFixed(2),
-		tailVolumeCm3: totalVolume.toFixed(2),
-	};
-}
-
-function calculateFluffiness(tailCount, tailShape) {
-	let fluffiness = tailShape === 'fluffy' ? 60 : tailShape === 'sleek' ? 15 : 30;
-	fluffiness += tailCount * 3;
-	return Math.min(100, fluffiness);
-}
-
-function calculateComplexity(tailCount, fluffiness) {
-	const elderBoost = tailCount >= 9 ? 20 : tailCount >= 7 ? 10 : 0;
-	return Math.min(100, tailCount * 8 + fluffiness / 2 + elderBoost);
-}
-
-// Spiritual power (stronger for more tails and age)
-function calculateSpiritPower(tailCount, age) {
-	return Math.min(100, Math.log2(tailCount + 1) * 20 + tailCount * 2 + age * 0.05).toFixed(1);
-}
-
-// Tail colors for 1-9 tails
-const tailColors = [
-	'#4fd1ff', // Tail 1: Soft Blue
-	'#4fff8a', // Tail 2: Light Green
-	'#b57edc', // Tail 3: Lavender
-	'#ff7f50', // Tail 4: Coral
-	'#ffd700', // Tail 5: Gold
-	'#ff6b8b', // Tail 6: Pink
-	'#00ffff', // Tail 7: Cyan
-	'#ffa500', // Tail 8: Orange
-	'#ff4f8b', // Tail 9: Crimson Flame
-];
-
-// Foxfire names for each tail count
-const foxfireNames = [
-	'Soft Blue', // Tail 1
-	'Light Green', // Tail 2
-	'Lavender', // Tail 3
-	'Coral', // Tail 4
-	'Gold', // Tail 5
-	'Pink', // Tail 6
-	'Cyan', // Tail 7
-	'Orange', // Tail 8
-	'Crimson Flame', // Tail 9
-];
-
-// Foxfire color based on tails
-function getFoxfireColor(tailCount) {
-	return tailColors[tailCount - 1] || tailColors[tailColors.length - 1];
-}
-
-function getFoxfireName(tailCount) {
-	return foxfireNames[tailCount - 1] || foxfireNames[foxfireNames.length - 1];
-}
-
-// Max tail span (visual span, not length)
-function calculateTailSpan(tailCount, tailLength) {
-	return (tailCount * tailLength * 0.3).toFixed(1);
-}
-
-// Create aura particles
-function createAuraParticles(container, color) {
-	container.innerHTML = '';
-	const particleCount = 15;
-
-	for (let i = 0; i < particleCount; i++) {
-		const particle = document.createElement('div');
-		particle.classList.add('aura-particle');
-		particle.style.left = `${Math.random() * 100}%`;
-		particle.style.top = `${Math.random() * 100}%`;
-		particle.style.animationDelay = `${Math.random() * 2}s`;
-		particle.style.color = color;
-		container.appendChild(particle);
-	}
-}
-
-function calculateKitsuneProperties() {
-	const height = parseFloat(document.getElementById('height').value) || 165;
-	const age = parseInt(document.getElementById('age').value) || 30;
-	const tailCount = parseInt(document.getElementById('tailCount').value) || 9;
-	const tailShape = document.getElementById('tailShape').value;
-
-	// if (height < 50) {
-	// 	alert('Height must be at least 50cm');
-	// 	return;
-	// }
-
-	const bodyWeight = calculateBodyWeight(height, tailCount, age);
-	const earHeight = calculateEarHeight(height, tailCount);
-	const tailProps = calculateFoxgirlTail(height, tailCount, tailShape, age);
-	const fluffiness = calculateFluffiness(tailCount, tailShape);
-	const complexity = calculateComplexity(tailCount, fluffiness);
-	const spiritPower = calculateSpiritPower(tailCount, age);
-	const foxfireColor = getFoxfireColor(tailCount);
-	const foxfireName = getFoxfireName(tailCount);
-	const tailSpan = calculateTailSpan(tailCount, parseFloat(tailProps.tailLength));
-
-	const totalWeight = (parseFloat(bodyWeight) + tailProps.tailMass * tailCount).toFixed(1);
-
-	let badgeText = '';
-	if (tailCount === 1) badgeText = 'Kit (1 Tail)';
-	else if (tailCount === 2) badgeText = 'Maiden (2 Tails)';
-	else if (tailCount === 3) badgeText = 'Matron (3 Tails)';
-	else if (tailCount === 4) badgeText = 'Ascendant (4 Tails)';
-	else if (tailCount === 5) badgeText = 'Mythic (5 Tails)';
-	else if (tailCount === 6) badgeText = 'Elder (6 Tails)';
-	else if (tailCount === 7) badgeText = 'Ancient (7 Tails)';
-	else if (tailCount === 8) badgeText = 'Demigod (8 Tails)';
-	else badgeText = 'Celestial (9 Tails)';
-
-	// Update aura visual
-	const auraVisual = document.querySelector('.aura-visual');
-	auraVisual.style.background = `rgba(30, 25, 55, 0.7)`;
-
-	// Update CSS variable for tail color
-	document.documentElement.style.setProperty('--current-tail-color', foxfireColor);
-
-	// Create aura particles
-	const auraParticles = document.getElementById('auraParticles');
-	createAuraParticles(auraParticles, foxfireColor);
-
-	// Update DOM
-	document.getElementById('kitsuneBadge').textContent = badgeText;
-	document.getElementById('physicalValue').textContent = `${bodyWeight} kg`;
-	document.getElementById('earValue').textContent = `${earHeight} cm`;
-	document.getElementById('tailLength').textContent = `${tailProps.tailLength} cm`;
-	document.getElementById('tailMass').textContent = `${tailProps.tailMass} kg`;
-	document.getElementById('tailVolume').textContent = `${tailProps.tailVolumeLiters} liters`;
-	document.getElementById('totalWeight').textContent = `${totalWeight} kg`;
-	document.getElementById('spiritPower').textContent = `${spiritPower}%`;
-
-	// Update foxfire color with glowing text
-	const foxfireElement = document.getElementById('foxfireColor');
-	foxfireElement.textContent = foxfireName;
-	foxfireElement.className = 'result-value foxfire-glow';
-	foxfireElement.style.color = foxfireColor;
-	foxfireElement.style.textShadow = `0 0 10px ${foxfireColor}`;
-
-	document.getElementById('ageValue').textContent = `${age} years`;
-	document.getElementById('tailSpan').textContent = `${tailSpan} cm`;
-	document.getElementById('auraIntensity').style.width = `${fluffiness}%`;
-	document.getElementById('tailComplexity').style.width = `${complexity}%`;
-	document.getElementById('complexityValue').textContent = complexity > 80 ? 'Very High' : complexity > 60 ? 'High' : complexity > 40 ? 'Medium' : 'Low';
-
-	// Animation for updated values
-	// document.querySelectorAll('.result-value').forEach(el => {
-	// 	el.style.transform = 'scale(1.1)';
-	// 	setTimeout(() => {
-	// 		el.style.transform = 'scale(1)';
-	// 	}, 300);
-	// });
-}
-
-// Help button
-document.getElementById('helpBtn').addEventListener('click', function () {
-	const modal = document.getElementById('helpModal');
-	modal.style.display = 'block';
-});
-
-document.querySelector('.close').addEventListener('click', function () {
-	document.getElementById('helpModal').style.display = 'none';
-});
-
-window.addEventListener('click', function (event) {
-	const modal = document.getElementById('helpModal');
-	if (event.target === modal) {
-		modal.style.display = 'none';
-	}
-});
-
-// Preset buttons
-document.querySelectorAll('.preset-btn').forEach(btn => {
-	btn.addEventListener('click', function () {
-		const preset = this.dataset.preset;
-		const presets = {
-			kit: { tails: 1, age: 8, height: 100, shape: 'fluffy' },
-			teen: { tails: 2, age: 25, height: 150, shape: 'bushy' },
-			young3: { tails: 3, age: 60, height: 155, shape: 'bushy' },
-			young4: { tails: 4, age: 115, height: 160, shape: 'bushy' },
-			adult5: { tails: 5, age: 200, height: 165, shape: 'sleek' },
-			adult6: { tails: 6, age: 325, height: 168, shape: 'sleek' },
-			elder7: { tails: 7, age: 500, height: 170, shape: 'sleek' },
-			elder8: { tails: 8, age: 750, height: 172, shape: 'fluffy' },
-			celestial: { tails: 9, age: 1200, height: 175, shape: 'fluffy' },
-		};
-
-		const p = presets[preset];
-		document.getElementById('height').value = p.height;
-		document.getElementById('age').value = p.age;
-		document.getElementById('tailCount').value = p.tails;
-		document.getElementById('tailShape').value = p.shape;
-
-		// Visual feedback
-		document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-		this.classList.add('active');
-
-		// Immediately calculate with new values
-		calculateKitsuneProperties();
+	['sleek', 'bushy', 'fluffy'].forEach(t => {
+		const btn = document.getElementById(`btn-${t}`);
+		btn.className =
+			t === type
+				? 'py-2 px-4 rounded-lg font-medium transition-colors bg-red-600 text-white'
+				: 'py-2 px-4 rounded-lg font-medium transition-colors bg-slate-700 text-red-300 hover:bg-slate-600';
 	});
-});
 
-// Initialize and set up event listeners
-document.addEventListener('DOMContentLoaded', function () {
-	createParticles();
-	calculateKitsuneProperties();
+	document.getElementById('speciesLabel').textContent = `Based on ${tailSpecs[type].species}`;
 
-	// Set up input event listeners
-	document.getElementById('height').addEventListener('input', calculateKitsuneProperties);
-	document.getElementById('age').addEventListener('input', calculateKitsuneProperties);
-	document.getElementById('tailCount').addEventListener('change', calculateKitsuneProperties);
-	document.getElementById('tailShape').addEventListener('change', calculateKitsuneProperties);
+	const foxImg = document.getElementById('foxImage');
+	foxImg.className = `w-64 h-64 object-contain transition-all duration-500 ${tailSpecs[type].glowClass}`;
 
-	// Initial aura animation
-	setTimeout(() => {
-		document.getElementById('auraIntensity').style.width = '50%';
-	}, 500);
-});
+	calculate();
+}
+
+function formatValue(value, decimals = 1) {
+	return value.toFixed(decimals);
+}
+
+function copyShareLink() {
+	updateURL();
+
+	navigator.clipboard.writeText(window.location.href).then(() => {
+		const btn = document.getElementById('copyLink');
+		const original = btn.textContent;
+
+		btn.textContent = 'Copied!';
+		btn.classList.add('bg-red-600', 'text-white');
+
+		setTimeout(() => {
+			btn.textContent = original;
+			btn.classList.remove('bg-red-600', 'text-white');
+		}, 1200);
+	});
+}
+
+/* ---------- URL PARAMS ---------- */
+
+function loadFromURL() {
+	const p = new URLSearchParams(window.location.search);
+
+	if (p.has('h')) document.getElementById('height').value = p.get('h');
+	if (p.has('u')) document.getElementById('unit').value = p.get('u');
+	if (p.has('a')) document.getElementById('age').value = p.get('a');
+	if (p.has('t')) document.getElementById('tailCount').value = p.get('t');
+	if (p.has('l')) document.getElementById('legend').value = p.get('l');
+	if (p.has('tt')) setTailType(p.get('tt'));
+
+	updateTailCount();
+	updateLegend();
+}
+
+function updateURL() {
+	const p = new URLSearchParams({
+		h: document.getElementById('height').value,
+		u: document.getElementById('unit').value,
+		a: document.getElementById('age').value,
+		t: document.getElementById('tailCount').value,
+		tt: currentTailType,
+		l: document.getElementById('legend').value,
+	});
+	history.replaceState(null, '', `?${p.toString()}`);
+}
+
+/* ---------- CORE CALC ---------- */
+
+function calculate() {
+	const heightVal = parseFloat(document.getElementById('height').value);
+	const ageVal = parseFloat(document.getElementById('age').value);
+	const tailCountVal = parseInt(document.getElementById('tailCount').value);
+	const unitVal = document.getElementById('unit').value;
+	const legendFactor = parseFloat(document.getElementById('legend').value);
+
+	const heightCm = unitVal === 'metric' ? heightVal : heightVal * 2.54;
+
+	// Age model
+	const physicalAge = Math.min(ageVal, 25);
+	const maturity = physicalAge / 25;
+	const spiritualFactor = Math.log10(ageVal + 1) / Math.log10(9000);
+
+	// Build factor
+	const baseBuild = 0.9 + maturity * 0.25;
+	const tailLoadFactor = 1 + Math.log2(tailCountVal) * 0.05;
+	const buildFactor = baseBuild * (1 + (tailLoadFactor - 1) * (1 - legendFactor));
+
+	// Body weight (cubic scaling)
+	const referenceHeight = 165;
+	const referenceWeight = 55;
+
+	const bodyWeightKg = referenceWeight * Math.pow(heightCm / referenceHeight, 3) * buildFactor;
+
+	// Tail dimensions
+	const specs = tailSpecs[currentTailType];
+	const tailVisualBoost = 1 + legendFactor * 0.25;
+
+	const tailLengthBase = heightCm * specs.lengthRatio * (0.95 + maturity * 0.1);
+
+	const tailIndexFactor = Math.max(0.85 + legendFactor * 0.1, 1 - (tailCountVal - 1) * 0.015);
+
+	const tailLength = tailLengthBase * tailIndexFactor * tailVisualBoost;
+
+	const tailBaseDiameter = heightCm * specs.diameterRatio * (1 + spiritualFactor * 0.15) * tailVisualBoost;
+
+	const tailTipDiameter = tailBaseDiameter * 0.3;
+
+	// Tail volume
+	const r1 = tailBaseDiameter / 2;
+	const r2 = tailTipDiameter / 2;
+	const h = tailLength;
+
+	const volumePerTail = (Math.PI * h * (r1 * r1 + r1 * r2 + r2 * r2)) / 3;
+
+	// Tail weight
+	const tissueDensity = 1.05;
+	const weightPerTail = (volumePerTail * tissueDensity * specs.furMassFactor) / 1000;
+
+	const tailMassForgiveness = 1 - legendFactor * 0.4;
+	const totalTailWeight = weightPerTail * tailCountVal * tailMassForgiveness;
+
+	const totalWeight = bodyWeightKg + totalTailWeight;
+
+	// Ears
+	const headHeight = heightCm / 7.5;
+	const foxEarHeight = headHeight * 0.9 * (0.95 + maturity * 0.1);
+	const foxEarBase = foxEarHeight * 0.45;
+
+	// Conversions
+	const L = cm => (unitVal === 'metric' ? { value: cm, unit: 'cm' } : { value: cm / 2.54, unit: 'in' });
+
+	const W = kg => (unitVal === 'metric' ? { value: kg, unit: 'kg' } : { value: kg * 2.205, unit: 'lbs' });
+
+	const V = cm3 => (unitVal === 'metric' ? { value: cm3 / 1000, unit: 'L' } : { value: cm3 * 0.0610237, unit: 'in³' });
+
+	// Output
+	document.getElementById('bodyWeight').textContent = `${formatValue(W(bodyWeightKg).value, 1)} ${W(bodyWeightKg).unit}`;
+	document.getElementById('totalWeight').textContent = `${formatValue(W(totalWeight).value, 1)} ${W(totalWeight).unit}`;
+	document.getElementById('buildFactor').textContent = `${formatValue(buildFactor, 2)}×`;
+	document.getElementById('buildStatus').textContent = physicalAge < 25 ? `Maturing (${physicalAge}y)` : 'Mature (25y+)';
+
+	document.getElementById('tailWeight').textContent = `${formatValue(W(totalTailWeight).value, 2)} ${W(totalTailWeight).unit}`;
+	document.getElementById('tailLength').textContent = `${formatValue(L(tailLength).value, 1)} ${L(tailLength).unit}`;
+	document.getElementById('tailDiameter').textContent = `${formatValue(L(tailBaseDiameter).value, 1)} ${L(tailBaseDiameter).unit}`;
+	document.getElementById('totalVolume').textContent = `${formatValue(V(volumePerTail * tailCountVal).value, 2)} ${V(volumePerTail * tailCountVal).unit}`;
+	document.getElementById('volumeEach').textContent = `${formatValue(V(volumePerTail).value, 2)} ${V(volumePerTail).unit}`;
+	document.getElementById('earHeight').textContent = `${formatValue(L(foxEarHeight).value, 1)} ${L(foxEarHeight).unit}`;
+	document.getElementById('earWidth').textContent = `${formatValue(L(foxEarBase).value, 1)} ${L(foxEarBase).unit}`;
+
+	updateURL();
+}
+
+/* ---------- INIT ---------- */
+
+loadFromURL();
+calculate();
