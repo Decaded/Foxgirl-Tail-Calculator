@@ -1,5 +1,6 @@
 const PHI = 1.618033988749;
 let currentTailType = 'bushy';
+let currentLoreLabel = 'Field Biologist';
 
 const tailSpecs = {
 	sleek: {
@@ -25,6 +26,26 @@ const tailSpecs = {
 	},
 };
 
+let currentForm = 'humanoid';
+
+const formProfiles = {
+	humanoid: {
+		label: 'Humanoid',
+		heightScale: 1.0,
+		earScale: 1.0,
+	},
+	hybrid: {
+		label: 'Hybrid',
+		heightScale: 1.08,
+		earScale: 1.15,
+	},
+	animal: {
+		label: 'Animal',
+		heightScale: 1.25,
+		earScale: 1.25,
+	},
+};
+
 /* ---------- UI HELPERS ---------- */
 
 function updateTailCount() {
@@ -46,21 +67,8 @@ function updateLoreLabel(legend) {
 	else if (legend >= 0.45) label = 'Shrine Canon';
 	else if (legend >= 0.2) label = 'Folklore Accurate';
 
-	const el = document.getElementById('loreLabel');
-	if (el) el.textContent = label;
-
-	const container = document.getElementById('loreLabel')?.parentElement;
-	if (!container) return;
-
-	container.className =
-		'mt-3 px-4 py-2 rounded-lg border text-center ' +
-		(legend >= 0.85
-			? 'border-yellow-500 bg-yellow-950/40'
-			: legend >= 0.65
-			? 'border-pink-500 bg-pink-950/40'
-			: legend >= 0.45
-			? 'border-red-700 bg-red-950/60'
-			: 'border-slate-600 bg-slate-900/60');
+	currentLoreLabel = label;
+	renderInterpretationLabel();
 }
 
 function setTailType(type) {
@@ -104,6 +112,30 @@ function copyShareLink() {
 	});
 }
 
+function setForm(form) {
+	if (!formProfiles[form]) return;
+	currentForm = form;
+
+	['humanoid', 'hybrid', 'animal'].forEach(f => {
+		const btn = document.getElementById(`form-${f}`);
+		btn.className =
+			f === form
+				? 'py-2 px-4 rounded-lg font-medium transition-colors bg-red-600 text-white'
+				: 'py-2 px-4 rounded-lg font-medium transition-colors bg-slate-700 text-red-300 hover:bg-slate-600';
+	});
+
+	renderInterpretationLabel();
+	calculate();
+}
+
+function renderInterpretationLabel() {
+	const el = document.getElementById('loreLabel');
+	if (!el) return;
+
+	const formLabel = formProfiles[currentForm]?.label ?? 'Humanoid';
+	el.textContent = `${formLabel} — ${currentLoreLabel}`;
+}
+
 /* ---------- URL PARAMS ---------- */
 
 function loadFromURL() {
@@ -115,6 +147,7 @@ function loadFromURL() {
 	if (p.has('t')) document.getElementById('tailCount').value = p.get('t');
 	if (p.has('l')) document.getElementById('legend').value = p.get('l');
 	if (p.has('tt')) setTailType(p.get('tt'));
+	if (p.has('form')) setForm(p.get('form'));
 
 	updateTailCount();
 	updateLegend();
@@ -128,7 +161,9 @@ function updateURL() {
 		t: document.getElementById('tailCount').value,
 		tt: currentTailType,
 		l: document.getElementById('legend').value,
+		form: currentForm,
 	});
+
 	history.replaceState(null, '', `?${p.toString()}`);
 }
 
@@ -140,8 +175,9 @@ function calculate() {
 	const tailCountVal = parseInt(document.getElementById('tailCount').value);
 	const unitVal = document.getElementById('unit').value;
 	const legendFactor = parseFloat(document.getElementById('legend').value);
-
-	const heightCm = unitVal === 'metric' ? heightVal : heightVal * 2.54;
+	const rawHeightCm = unitVal === 'metric' ? heightVal : heightVal * 2.54;
+	const formProfile = formProfiles[currentForm];
+	const heightCm = rawHeightCm * formProfile.heightScale;
 
 	// Age model
 	const physicalAge = Math.min(ageVal, 25);
@@ -162,16 +198,11 @@ function calculate() {
 	// Tail dimensions
 	const specs = tailSpecs[currentTailType];
 	const tailVisualBoost = 1 + legendFactor * 0.25;
-
 	const tailLengthBase = heightCm * specs.lengthRatio * (0.95 + maturity * 0.1);
-
 	const tailIndexFactor = Math.max(0.85 + legendFactor * 0.1, 1 - (tailCountVal - 1) * 0.015);
-
 	const tailLength = tailLengthBase * tailIndexFactor * tailVisualBoost;
-
 	const tailBaseDiameter = heightCm * specs.diameterRatio * (1 + spiritualFactor * 0.15) * tailVisualBoost;
-
-	const tailTipDiameter = tailBaseDiameter * 0.3;
+	const tailTipDiameter = tailBaseDiameter / PHI;
 
 	// Tail volume
 	const r1 = tailBaseDiameter / 2;
@@ -183,7 +214,6 @@ function calculate() {
 	// Tail weight
 	const tissueDensity = 1.05;
 	const weightPerTail = (volumePerTail * tissueDensity * specs.furMassFactor) / 1000;
-
 	const tailMassForgiveness = 1 - legendFactor * 0.4;
 	const totalTailWeight = weightPerTail * tailCountVal * tailMassForgiveness;
 
@@ -191,8 +221,8 @@ function calculate() {
 
 	// Ears
 	const headHeight = heightCm / 7.5;
-	const foxEarHeight = headHeight * 0.9 * (0.95 + maturity * 0.1);
-	const foxEarBase = foxEarHeight * 0.45;
+	const foxEarHeight = headHeight * 0.9 * (0.95 + maturity * 0.1) * formProfile.earScale;
+	const foxEarBase = foxEarHeight * (0.45 + (1 / PHI - 0.45) * legendFactor);
 
 	// Conversions
 	const L = cm => (unitVal === 'metric' ? { value: cm, unit: 'cm' } : { value: cm / 2.54, unit: 'in' });
@@ -206,7 +236,6 @@ function calculate() {
 	document.getElementById('totalWeight').textContent = `${formatValue(W(totalWeight).value, 1)} ${W(totalWeight).unit}`;
 	document.getElementById('buildFactor').textContent = `${formatValue(buildFactor, 2)}×`;
 	document.getElementById('buildStatus').textContent = physicalAge < 25 ? `Maturing (${physicalAge}y)` : 'Mature (25y+)';
-
 	document.getElementById('tailWeight').textContent = `${formatValue(W(totalTailWeight).value, 2)} ${W(totalTailWeight).unit}`;
 	document.getElementById('tailLength').textContent = `${formatValue(L(tailLength).value, 1)} ${L(tailLength).unit}`;
 	document.getElementById('tailDiameter').textContent = `${formatValue(L(tailBaseDiameter).value, 1)} ${L(tailBaseDiameter).unit}`;

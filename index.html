@@ -96,6 +96,37 @@
 			<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
 				<!-- Left Column - Inputs -->
 				<div class="bg-slate-800/90 backdrop-blur rounded-lg shadow-xl p-8 border-2 border-red-900">
+					<!-- Body Form -->
+					<div class="mb-6">
+						<label class="block text-red-300 font-semibold mb-2">Body Form</label>
+
+						<div class="grid grid-cols-3 gap-2">
+							<button
+								id="form-humanoid"
+								onclick="setForm('humanoid')"
+								class="py-2 px-4 rounded-lg font-medium transition-colors bg-red-600 text-white"
+							>
+								Humanoid
+							</button>
+							<button
+								id="form-hybrid"
+								onclick="setForm('hybrid')"
+								class="py-2 px-4 rounded-lg font-medium transition-colors bg-slate-700 text-red-300 hover:bg-slate-600"
+							>
+								Hybrid
+							</button>
+							<button
+								id="form-animal"
+								onclick="setForm('animal')"
+								class="py-2 px-4 rounded-lg font-medium transition-colors bg-slate-700 text-red-300 hover:bg-slate-600"
+							>
+								Animal
+							</button>
+						</div>
+
+						<div class="text-xs text-red-400 mt-1 text-center">Silhouette & proportion only</div>
+					</div>
+
 					<!-- Height Input -->
 					<div class="mb-6">
 						<label class="block text-red-300 font-semibold mb-2"> Kitsune Height </label>
