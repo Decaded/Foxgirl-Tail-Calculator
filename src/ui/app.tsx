@@ -52,7 +52,7 @@ export function App() {
 							Kitsune Calculator
 						</h1>
 						<p class="text-xs text-text-muted">
-							A scientific instrument for measuring foxgirls
+							A "scientific" instrument for measuring your foxgirl.
 						</p>
 					</div>
 					<div class="flex items-baseline gap-2">
