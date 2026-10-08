@@ -7,7 +7,6 @@ import { rankLabel } from './format';
 import { Manual } from './manual';
 import { ResultsPanel } from './results';
 import { Specimen } from './specimen';
-import { Analytics } from '@vercel/analytics/next';
 
 const focusRing = 'focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-2';
 
@@ -94,9 +93,9 @@ export function App() {
 								results={results}
 							/>
 							<p class='text-[11px] text-text-muted text-center'>
-								Yes I know it looks ass. No, I won't make it better cause I am unable to.
+								Yes I know it looks ass. No, I won"t make it better cause I am unable to.
 								<br />
-								If you can't stand it, make a proper model and send it to me.
+								If you can"t stand it, make a proper model and send it to me.
 							</p>
 						</div>
 						<button
@@ -145,7 +144,6 @@ export function App() {
 				</footer>
 			</div>
 			{manual ? <Manual onClose={() => setManual(false)} /> : null}
-			<Analytics />
 		</div>
 	);
 }

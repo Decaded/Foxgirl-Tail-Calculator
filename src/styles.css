@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "./tokens.css";
+@import 'tailwindcss';
+@import './tokens.css';
 
 @keyframes tail-sway {
 	0%,
@@ -31,15 +31,11 @@
 
 .foxfire-glow {
 	animation: foxfire-flicker 3.2s ease-in-out infinite;
-	filter: drop-shadow(
-		0 0 4px color-mix(in oklab, var(--t-foxfire) 55%, transparent)
-	);
+	filter: drop-shadow(0 0 4px color-mix(in oklab, var(--t-foxfire) 55%, transparent));
 }
 
 .fox-glow {
-	filter: drop-shadow(
-		0 0 14px color-mix(in oklab, var(--t-foxfire) 45%, transparent)
-	);
+	filter: drop-shadow(0 0 14px color-mix(in oklab, var(--t-foxfire) 45%, transparent));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -49,13 +45,13 @@
 	}
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
 	-moz-appearance: textfield;
 	appearance: textfield;
 }
