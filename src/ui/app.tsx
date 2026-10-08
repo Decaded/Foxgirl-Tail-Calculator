@@ -24,6 +24,7 @@ export function App() {
 	}));
 	const [copied, setCopied] = useState(false);
 	const [manual, setManual] = useState(false);
+	const [donationDismissed, setDonationDismissed] = useState(false);
 	const results = useMemo(() => calculate(state), [state]);
 
 	const update = (patch: Partial<State>) =>
@@ -45,7 +46,7 @@ export function App() {
 
 	return (
 		<div class="min-h-screen bg-bg text-text">
-			<div class="max-w-[1600px] mx-auto px-6 py-8 space-y-6">
+			<div class="max-w-[1600px] mx-auto px-6 py-8 pb-28 xl:pb-8 space-y-6">
 				<header class="flex items-baseline justify-between gap-4 border-b border-line pb-4">
 					<div>
 						<h1 class="font-mono text-2xl font-bold text-foxfire tracking-tight">
@@ -80,8 +81,11 @@ export function App() {
 					<div class="space-y-4">
 						<Controls state={state} update={update} />
 					</div>
-					<div>
+					<div class="flex flex-col gap-6">
 						<ResultsPanel state={state} results={results} />
+						{!donationDismissed ? (
+							<Donation floating onDismiss={() => setDonationDismissed(true)} />
+						) : null}
 					</div>
 					<div class="space-y-4 flex flex-col lg:col-start-2 xl:col-start-3">
 						<div class="bg-surface border border-line rounded-sm p-6 space-y-3">
@@ -108,6 +112,7 @@ export function App() {
 						>
 							{copied ? "Copied" : "Copy Share Link"}
 						</button>
+						{donationDismissed ? <Donation /> : null}
 						<div class="flex justify-center mt-auto pt-4">
 							<img
 								src={foxImage}
@@ -149,6 +154,56 @@ export function App() {
 				</footer>
 			</div>
 			{manual ? <Manual onClose={() => setManual(false)} /> : null}
+		</div>
+	);
+}
+
+function Donation({
+	floating,
+	onDismiss,
+}: {
+	floating?: boolean;
+	onDismiss?: () => void;
+}) {
+	return (
+		<div
+			class={
+				floating
+					? "fixed inset-x-0 bottom-0 z-40 xl:relative xl:mt-auto"
+					: "relative"
+			}
+		>
+			<a
+				href="https://ko-fi.com/decaded"
+				target="_blank"
+				rel="noreferrer"
+				class={`flex flex-col gap-1 w-full text-xs ${focusRing} ${
+					floating
+						? "px-4 py-3 bg-raised border-t border-line xl:bg-surface xl:border xl:rounded-sm xl:py-4"
+						: "px-4 py-4 bg-surface border border-line rounded-sm"
+				}`}
+			>
+				<span class="font-mono uppercase tracking-widest text-text text-center">
+					◈ FUND FURTHER RESEARCH ◈
+				</span>
+				<span class="text-text-muted text-center">
+					The scientific community has provided no funding for this important
+					work.
+				</span>
+				<span class="font-mono text-foxfire text-right whitespace-nowrap">
+					Support on Ko-fi →
+				</span>
+			</a>
+			{onDismiss ? (
+				<button
+					type="button"
+					aria-label="Dismiss support banner"
+					onClick={onDismiss}
+					class={`absolute right-1 top-1 flex h-6 w-6 items-center justify-center text-text-muted hover:text-text xl:hidden ${focusRing}`}
+				>
+					✕
+				</button>
+			) : null}
 		</div>
 	);
 }
