@@ -1,0 +1,47 @@
+name: Bug report
+description: Report something that is not working as expected.
+title: '[Bug]: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: 'Thanks for helping improve Kitsune Calculator. Please include enough detail to reproduce the issue.'
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you were doing when it occurred.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: List the steps that reliably reproduce the issue.
+      placeholder: |
+        1. Open the calculator
+        2. Change ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Browser and device
+      description: Include browser, operating system, and device when relevant.
+      placeholder: Firefox on Linux desktop
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: Screenshots or additional context
+      description: Add screenshots or other details that may help diagnose the issue.
+    validations:
+      required: false
