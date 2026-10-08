@@ -1,205 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-		/>
-		<meta
-			property="og:title"
-			content="Foxgirl Tail Calculator"
-		/>
-		<meta
-			property="og:description"
-			content="Calculate the length, mass, and volume of a foxgirl's tail based on her height. Now also calculates ears!"
-		/>
-		<meta
-			property="og:image"
-			content="https://foxgirl.decaded.dev/images/foxxy.jpg"
-		/>
-		<meta
-			property="og:url"
-			content="https://foxgirl.decaded.dev/"
-		/>
-		<meta
-			property="og:type"
-			content="website"
-		/>
-		<meta
-			property="og:site_name"
-			content="Foxgirl Tail Calculator"
-		/>
-		<meta
-			name="robots"
-			content="index,follow"
-		/>
-		<title>Foxgirl Tail Calculator</title>
-		<link
-			rel="icon"
-			type="image/x-icon"
-			href="images/foxxy.jpg"
-		/>
-		<link
-			rel="stylesheet"
-			href="styles/main.css?v=1.0.1"
-		/>
-		<link
-			rel="stylesheet"
-			href="styles/mobile.css?v=1.0.1"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Kitsune Calculator</title>
+		<meta name="description" content="A 'scientific' instrument for measuring your foxgirl." />
+		<meta name="author" content="Decaded" />
+		<link rel="icon" type="image/png" href="/images/fox_small.png" />
+		<meta property="og:title" content="Kitsune Calculator" />
+		<meta property="og:description" content="A 'scientific' instrument for measuring your foxgirl." />
+		<meta property="og:image" content="https://foxgirl.decaded.dev/images/foxxy.jpg" />
+		<meta property="og:image:width" content="179" />
+		<meta property="og:image:height" content="222" />
+		<meta property="og:image:alt" content="Foxxy — the kitsune mascot" />
+		<meta property="og:url" content="https://foxgirl.decaded.dev" />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Kitsune Calculator" />
+		<meta name="twitter:description" content="A 'scientific' instrument for measuring your foxgirl." />
+		<meta name="twitter:image" content="https://foxgirl.decaded.dev/images/foxxy.jpg" />
 	</head>
-
 	<body>
-		<div id="container">
-			<div id="input-container">
-				<h2>Foxgirl Tail Calculator</h2>
-				<div class="input-wrapper">
-					<label for="foxgirlHeightInput">Provide height in centimeters</label>
-					<input
-						type="number"
-						id="foxgirlHeightInput"
-						placeholder="Enter foxgirl height (cm)"
-					/>
-				</div>
-				<div class="input-wrapper">
-					<label for="tailCountSelect">Select number of tails</label>
-					<select id="tailCountSelect">
-						<option value="1">1 Tail</option>
-						<option value="2">2 Tails</option>
-						<option value="3">3 Tails</option>
-						<option value="4">4 Tails</option>
-						<option value="5">5 Tails</option>
-						<option value="6">6 Tails</option>
-						<option value="7">7 Tails</option>
-						<option value="8">8 Tails</option>
-						<option value="9">9 Tails</option>
-					</select>
-				</div>
-				<button id="calculateButton">Calculate</button>
-			</div>
-			<div id="result-container">
-				<h2>Calculated Results</h2>
-
-				<div id="individualContainer">
-					<div class="result-item">
-						<span class="result-label">Foxgirl Height:</span>
-						<span
-							id="foxgirlHeight"
-							class="result-value"
-						></span>
-					</div>
-					<div class="result-item">
-						<span class="result-label">Number of Tails:</span>
-						<span
-							id="tailCount"
-							class="result-value"
-						></span>
-					</div>
-
-					<div class="result-item">
-						<span class="result-label">Ears Height:</span>
-						<span
-							id="earHeight"
-							class="result-value"
-						></span>
-					</div>
-
-					<div class="result-item">
-						<span class="result-label">Estimated Body Weight:</span>
-						<span
-							id="bodyWeight"
-							class="result-value"
-						></span>
-					</div>
-
-					<div class="result-item">
-						<span class="result-label">Total Weight with Tail(s):</span>
-						<span
-							id="totalWeight"
-							class="result-value"
-						></span>
-					</div>
-
-					<h3>Tail dimensions</h3>
-					<div class="result-item">
-						<span class="result-label">Length:</span>
-						<span
-							id="tailLength"
-							class="result-value"
-						></span>
-					</div>
-					<div class="result-item">
-						<span class="result-label">Mass:</span>
-						<span
-							id="tailMass"
-							class="result-value"
-						></span>
-					</div>
-					<div class="result-item">
-						<span class="result-label">Volume:</span>
-						<span
-							id="tailVolume"
-							class="result-value"
-						></span>
-					</div>
-				</div>
-				<div id="combinedContainer">
-					<h3>Combined Tails</h3>
-					<div class="result-item">
-						<span class="result-label">Mass:</span>
-						<span
-							id="combinedMass"
-							class="result-value"
-						></span>
-					</div>
-					<div class="result-item">
-						<span class="result-label">Volume:</span>
-						<span
-							id="combinedVolume"
-							class="result-value"
-						></span>
-					</div>
-				</div>
-				<div
-					id="back-arrow-container"
-					onclick="goBack()"
-				>
-					<i
-						class="fas fa-arrow-left"
-						id="back-arrow"
-					></i>
-					<span id="go-back-text">Go Back</span>
-				</div>
-			</div>
-		</div>
-
-		<!-- Load JavaScript files -->
-		<script src="js/calculateFoxgirlTail.js?v=1.0.0"></script>
-		<script src="js/calculateFoxgirlEars.js?v=1.0.0"></script>
-		<script src="js/calculateFoxgirlBody.js?v=1.0.1"></script>
-		<script src="js/script.js?v=1.1.1"></script>
+		<div id="app"></div>
+		<script type="module" src="/src/main.tsx"></script>
 	</body>
-
-	<footer>
-		<a
-			href="https://github.com/Decaded/Foxgirl-Tail-Calculator"
-			target="_blank"
-			><i class="fab fa-github"></i> GitHub Repo</a
-		>
-		<a
-			href="https://decaded.dev"
-			target="_blank"
-			><i class="fas fa-globe"></i> Site &copy; Decaded</a
-		>
-		<a
-			href="https://www.pixiv.net/en/artworks/60082303"
-			target="_blank"
-			><i class="fas fa-image"></i> Background Image</a
-		>
-	</footer>
 </html>

@@ -1,0 +1,72 @@
+/* The only file allowed to contain color literals. */
+
+@font-face {
+	font-family: "IBM Plex Mono";
+	src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "IBM Plex Mono";
+	src: url("/fonts/IBMPlexMono-Medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "IBM Plex Mono";
+	src: url("/fonts/IBMPlexMono-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@theme inline {
+	--color-bg: var(--t-bg);
+	--color-surface: var(--t-surface);
+	--color-raised: var(--t-raised);
+	--color-line: var(--t-line);
+	--color-text: var(--t-text);
+	--color-text-muted: var(--t-text-muted);
+	--color-foxfire: var(--t-foxfire);
+	--color-on-foxfire: var(--t-on-foxfire);
+	--color-violet: var(--t-violet);
+	--color-gold: var(--t-gold);
+	--color-gold-ink: var(--t-gold-ink);
+	--color-focus: var(--t-focus);
+	--font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+:root,
+[data-theme="dark"] {
+	--t-bg: #141218;
+	--t-surface: #1e1a22;
+	--t-raised: #28222c;
+	--t-line: color-mix(in oklab, var(--t-violet) 45%, var(--t-bg));
+	--t-text: #f4ede3;
+	--t-text-muted: #b8acb0;
+	--t-foxfire: #d96745;
+	--t-on-foxfire: #1e1a22;
+	--t-violet: #756080;
+	--t-gold: #d3a348;
+	--t-gold-ink: #d3a348;
+	--t-focus: #d96745;
+}
+
+[data-theme="light"] {
+	--t-bg: #f5f0e8;
+	--t-surface: #fff9f1;
+	--t-raised: #ede4da;
+	--t-line: color-mix(in oklab, var(--t-violet) 40%, var(--t-bg));
+	--t-text: #302a30;
+	--t-text-muted: #6b6167;
+	--t-foxfire: #b94f36;
+	--t-on-foxfire: #302a30;
+	--t-violet: #675272;
+	--t-gold: #a77a27;
+	--t-gold-ink: #7f5c1e;
+	--t-focus: #b94f36;
+}
